@@ -4,11 +4,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.Set;
-
 public class ValidBoomerang {
     ValidBoomerang validBoomerang;
 
@@ -84,38 +79,28 @@ public class ValidBoomerang {
     public boolean isBoomerang(int[][] points) {
         if(points.length==2)return true;
         if(points==null ||points.length==0)return true;
-
-        Arrays.sort(points, Comparator.comparingDouble(a -> a[0]));
-
-        int[] m=points[0];
-        int j;
-        double slope=Integer.MAX_VALUE;
-        for (j=1;j<points.length;j++){
-            int[] n=points[j];
-            if(m[0]!=n[0] || m[1]!=n[1]) {
-                if (n[0] - m[0] == 0)
-                    slope = Integer.MAX_VALUE;
-                else
-                    slope = Math.abs(n[1] - m[1]) / Math.abs(n[0] - m[0]);
-                break;
+        double slope=Double.MAX_VALUE;
+        for (int i = 0; i < points.length-1; i++) {
+            for (int j = i+1; j <points.length ; j++) {
+                int[] p=points[i];
+                int[] q=points[j];
+                if(p[0]!=q[0] ||p[1]!=q[1]){
+                    double cSlope;
+                    if(q[0]-p[0]==0){
+                        cSlope=Double.MAX_VALUE;
+                    }else{
+                        cSlope=Math.abs(q[1]-p[1])/Math.abs(q[0]-p[0]);
+                    }
+                    if(slope==Double.MAX_VALUE && cSlope!=Double.MAX_VALUE){
+                        slope=cSlope;
+                    }
+                    if(slope!=cSlope){
+                        return true;
+                    }
+                }
             }
         }
 
-
-        if(j==points.length-1)return false;
-        for (int i = j+1; i <points.length ; i++) {
-            int[] a=points[0];
-            int[] b=points[i];
-
-            double slopetemp=0;
-            if(b[0]-a[0]==0)
-                slopetemp=Integer.MAX_VALUE;
-            else
-                slopetemp=Math.abs(b[1]-a[1])/Math.abs(b[0]-a[0]);
-
-            if(slope==slopetemp)
-                return false;
-        }
-        return true;
+        return false;
     }
 }
