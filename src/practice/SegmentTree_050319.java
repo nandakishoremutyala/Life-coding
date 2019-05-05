@@ -21,7 +21,7 @@ public class SegmentTree_050319 {
             temp[i] = Math.max(temp[i << 1], temp[i << 1 | 1]);
 
         Arrays.stream(temp).forEach(value -> System.out.print(value + "-"));
-        int res = searchInRange(len + 1, len + 5);
+        int res = searchInRange(len + 3, len + 5);
         System.out.println(res);
     }
 
