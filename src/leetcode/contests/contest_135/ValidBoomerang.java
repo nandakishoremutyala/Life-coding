@@ -16,91 +16,77 @@ public class ValidBoomerang {
     public void testFirst() {
         int[][] input = new int[][]{{1, 1}, {2, 2}, {3, 3}};
 
-        boolean result=isBoomerang(input);
-        Assertions.assertEquals(false,result);
+        boolean result = isBoomerang(input);
+        Assertions.assertEquals(false, result);
     }
 
     @Test
     public void testSecond() {
         int[][] input = new int[][]{{1, 1}, {2, 3}, {3, 2}};
-        boolean result=isBoomerang(input);
-        Assertions.assertEquals(true,result);
+        boolean result = isBoomerang(input);
+        Assertions.assertEquals(true, result);
     }
 
     @Test
     public void testThird() {
         int[][] input = new int[][]{{0, 0}, {0, 2}, {2, 1}};
-        boolean result=isBoomerang(input);
-        Assertions.assertEquals(true,result);
+        boolean result = isBoomerang(input);
+        Assertions.assertEquals(true, result);
     }
 
     @Test
     public void testFourth() {
         int[][] input = new int[][]{{0, 0}, {2, 1}, {2, 1}};
-        boolean result=isBoomerang(input);
-        Assertions.assertEquals(false,result);
+        boolean result = isBoomerang(input);
+        Assertions.assertEquals(false, result);
     }
 
     @Test
     public void testFifth() {
         int[][] input = new int[][]{{0, 0}, {1, 2}, {0, 1}};
-        boolean result=isBoomerang(input);
-        Assertions.assertEquals(true,result);
+        boolean result = isBoomerang(input);
+        Assertions.assertEquals(true, result);
     }
 
     @Test
     public void testSixth() {
         int[][] input = new int[][]{{0, 1}, {0, 2}, {1, 2}};
-        boolean result=isBoomerang(input);
-        Assertions.assertEquals(true,result);
+        boolean result = isBoomerang(input);
+        Assertions.assertEquals(true, result);
     }
 
     @Test
     public void testSeven() {
         int[][] input = new int[][]{{0, 1}, {0, 1}, {2, 1}};
-        boolean result=isBoomerang(input);
-        Assertions.assertEquals(false,result);
+        boolean result = isBoomerang(input);
+        Assertions.assertEquals(false, result);
     }
 
     @Test
     public void testEight() {
         int[][] input = new int[][]{{0, 1}, {1, 0}, {0, 1}};
-        boolean result=isBoomerang(input);
-        Assertions.assertEquals(false,result);
+        boolean result = isBoomerang(input);
+        Assertions.assertEquals(false, result);
     }
 
     @Test
     public void testNine() {
         int[][] input = new int[][]{{0, 1}, {1, 1}, {2, 2}};
-        boolean result=isBoomerang(input);
-        Assertions.assertEquals(false,result);
+        boolean result = isBoomerang(input);
+        Assertions.assertEquals(false, result);
     }
 
     public boolean isBoomerang(int[][] points) {
-        if(points.length==2)return true;
-        if(points==null ||points.length==0)return true;
-        double slope=Double.MAX_VALUE;
-        for (int i = 0; i < points.length-1; i++) {
-            for (int j = i+1; j <points.length ; j++) {
-                int[] p=points[i];
-                int[] q=points[j];
-                if(p[0]!=q[0] ||p[1]!=q[1]){
-                    double cSlope;
-                    if(q[0]-p[0]==0){
-                        cSlope=Double.MAX_VALUE;
-                    }else{
-                        cSlope=Math.abs(q[1]-p[1])/Math.abs(q[0]-p[0]);
-                    }
-                    if(slope==Double.MAX_VALUE && cSlope!=Double.MAX_VALUE){
-                        slope=cSlope;
-                    }
-                    if(slope!=cSlope){
-                        return true;
-                    }
-                }
-            }
-        }
+        if(points[0]==points[1]||points[1]==points[2]||points[0]==points[2]) return false;
 
-        return false;
+        int x1=points[0][0];
+        int y1=points[0][1];
+
+        int x2=points[1][0];
+        int y2=points[1][1];
+
+        int x3=points[2][0];
+        int y3=points[2][1];
+        return x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2)!=0;
     }
 }
