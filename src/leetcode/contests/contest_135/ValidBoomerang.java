@@ -73,20 +73,20 @@ public class ValidBoomerang {
     public void testNine() {
         int[][] input = new int[][]{{0, 1}, {1, 1}, {2, 2}};
         boolean result = isBoomerang(input);
-        Assertions.assertEquals(false, result);
+        Assertions.assertEquals(true, result);
     }
 
     public boolean isBoomerang(int[][] points) {
-        if(points[0]==points[1]||points[1]==points[2]||points[0]==points[2]) return false;
+        if (points[0] == points[1] || points[1] == points[2] || points[0] == points[2]) return false;
 
-        int x1=points[0][0];
-        int y1=points[0][1];
+        int x1 = points[0][0];
+        int y1 = points[0][1];
 
-        int x2=points[1][0];
-        int y2=points[1][1];
+        int x2 = points[1][0];
+        int y2 = points[1][1];
 
-        int x3=points[2][0];
-        int y3=points[2][1];
-        return x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2)!=0;
+        int x3 = points[2][0];
+        int y3 = points[2][1];
+        return x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2) != 0;
     }
 }
