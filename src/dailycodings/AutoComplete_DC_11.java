@@ -1,6 +1,6 @@
 package dailycodings;
 
-import java.util.HashMap;
+import java.util.*;
 
 public class AutoComplete_DC_11 {
     public static void main(String[] args) {
@@ -9,6 +9,9 @@ public class AutoComplete_DC_11 {
         add(dog);
         add("doggy");
         System.out.println(root);
+
+        List<String> result= autoSearch("do");
+        System.out.println(result.size());
     }
 
     static Node root;
@@ -48,4 +51,26 @@ public class AutoComplete_DC_11 {
             }
         }
     }
+
+    public static List<String> autoSearch(String subString){
+        Node targetNode=root;
+        for (int i = 0; i <subString.length() ; i++) {
+            targetNode=targetNode.map.get(subString.charAt(i));
+        }
+
+        List<String> output=new ArrayList<>();
+        helper(targetNode,output,new StringBuilder(subString));
+        return output;
+    }
+
+    private static void helper(Node targetNode, List<String> output,StringBuilder sb) {
+        if(targetNode.word)
+            output.add(sb.toString());
+        Iterator<Map.Entry<Character, Node>> it=targetNode.map.entrySet().iterator();
+        while (it.hasNext()){
+            Map.Entry<Character,Node> data= it.next();
+            helper(data.getValue(),output,sb.append(data.getKey()));
+        }
+    }
+
 }
