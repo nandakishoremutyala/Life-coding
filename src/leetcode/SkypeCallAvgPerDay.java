@@ -1,8 +1,4 @@
 package leetcode;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import java.util.LinkedHashMap;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
@@ -55,20 +51,10 @@ public class SkypeCallAvgPerDay {
 
     }
 
-    @AllArgsConstructor
-    @NoArgsConstructor
     class SkypeSession {
-        @Setter
-        @Getter
         private UUID sessionId;
-        @Getter
-        @Setter
         private long startTime;
-        @Getter
-        @Setter
         private long endTime;
-        @Getter
-        @Setter
         private long duration;
 
         public long calculateDuration(long start, long stop) {
