@@ -1,6 +1,7 @@
 package leetcode.contests.contest_136;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
 
@@ -8,8 +9,7 @@ public class LongestDuplicateSubstring {
     static Map<Character, LinkedList<Integer>> map = new HashMap<>();
 
     public static void main(String[] args) {
-        String result= longestDupSubstring("banana");
-
+        String result = longestDupSubstring("banana");
         System.out.println(result);
     }
 
@@ -26,12 +26,13 @@ public class LongestDuplicateSubstring {
         }
 
         String output = "";
-        for (int i = 0; i < S.length(); i++) {
-            char c = S.charAt(i);
-            if (map.get(c).size() >= 2) {
-                String cOutput = compute(map.get(c), S);
-                if(cOutput.length()>output.length())
-                    output=cOutput;
+        Iterator<Map.Entry<Character, LinkedList<Integer>>> it = map.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry<Character, LinkedList<Integer>> next = it.next();
+            if (next.getValue().size() > 2) {
+                String cOutput = compute(next.getValue(), S);
+                if (cOutput.length() > output.length())
+                    output = cOutput;
             }
         }
         return output;
@@ -40,7 +41,7 @@ public class LongestDuplicateSubstring {
     private static String compute(LinkedList<Integer> integers, String input) {
         int first = integers.get(0);
         int second = integers.get(1);
-        int length=0;
+        int length = 0;
         while (first < second && second < input.length()) {
             while (second < input.length()) {
                 if (input.charAt(first) == input.charAt(second)) {
@@ -51,7 +52,7 @@ public class LongestDuplicateSubstring {
                     break;
             }
         }
-        return input.substring(first-length,first);
+        return input.substring(first - length, first);
     }
 
 }
