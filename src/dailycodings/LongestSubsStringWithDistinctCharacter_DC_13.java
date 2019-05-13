@@ -15,7 +15,6 @@ public class LongestSubsStringWithDistinctCharacter_DC_13 {
         int start = 0;
         int end = 0;
         while (end < input.length()) {
-
             set.add(input.charAt(end));
             if (set.size() > k) {
                 set.remove(input.charAt(start));
