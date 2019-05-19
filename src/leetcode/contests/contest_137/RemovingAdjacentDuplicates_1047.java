@@ -1,5 +1,6 @@
 package leetcode.contests.contest_137;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,13 +15,13 @@ public class RemovingAdjacentDuplicates_1047 {
     @Test
     public void firstTest() {
         String result= removeDuplicates("abbaca");
-        System.out.println(result);
+        Assertions.assertEquals("ca",result);
     }
 
     @Test
     public void SecondTest() {
         String result= removeDuplicates("aaaada");
-        System.out.println(result);
+        Assertions.assertEquals("da",result);
     }
 
     public String removeDuplicates(String S) {
