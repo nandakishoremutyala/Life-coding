@@ -4,16 +4,15 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.PriorityQueue;
 
-public class LastStoneWeight {
-    LastStoneWeight lastStoneWeight;
+public class LastStoneWeight_1046 {
+    LastStoneWeight_1046 lastStoneWeight;
 
     @BeforeEach
     public void init() {
-        lastStoneWeight = new LastStoneWeight();
+        lastStoneWeight = new LastStoneWeight_1046();
     }
 
     @Test
