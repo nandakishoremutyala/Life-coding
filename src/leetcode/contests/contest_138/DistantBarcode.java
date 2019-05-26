@@ -67,6 +67,5 @@ public class DistantBarcode {
             }
         }
         return barcodes;
-
     }
 }
