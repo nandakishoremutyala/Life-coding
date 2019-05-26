@@ -1,5 +1,6 @@
 package leetcode.contests.contest_138;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -15,19 +16,20 @@ public class DistantBarcode {
 
     @Test
     public void testFirst() {
-        distantBarcode.rearrangeBarcodes(new int[]{1, 1, 1, 1, 2, 2, 3, 3});
+        int[] expected = distantBarcode.rearrangeBarcodes(new int[]{1, 1, 1, 1, 2, 2, 3, 3});
+        Assertions.assertArrayEquals(new int[]{1, 3, 1, 3, 1, 2, 1, 2}, expected);
     }
 
     @Test
     public void testSecond() {
-        System.out.println();
-        distantBarcode.rearrangeBarcodes(new int[]{1, 1, 1, 2, 2, 2});
+        int[] expected = distantBarcode.rearrangeBarcodes(new int[]{1, 1, 1, 2, 2, 2});
+        Assertions.assertArrayEquals(new int[]{1, 2, 1, 2, 1, 2}, expected);
     }
 
     @Test
     public void testThird() {
-        System.out.println();
-        distantBarcode.rearrangeBarcodes(new int[]{2, 2, 2, 1, 5});
+        int[] expected = distantBarcode.rearrangeBarcodes(new int[]{2, 2, 2, 1, 5});
+        Assertions.assertArrayEquals(new int[]{2, 5, 2, 1, 2}, expected);
     }
 
     @Test
