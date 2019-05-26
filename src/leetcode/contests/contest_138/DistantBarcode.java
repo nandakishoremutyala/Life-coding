@@ -30,80 +30,41 @@ public class DistantBarcode {
         distantBarcode.rearrangeBarcodes(new int[]{2, 2, 2, 1, 5});
     }
 
+    @Test
+    public void testFourth() {
+        distantBarcode.rearrangeBarcodes(new int[]{7, 7, 7, 8, 5, 7, 5, 5, 5, 8});
+    }
+
     public int[] rearrangeBarcodes(int[] barcodes) {
-        TreeMap<Integer,ArrayList<Integer>> map=new TreeMap<>(Collections.reverseOrder());
-        HashMap<Integer,Integer> m= new HashMap<>();
-        for (int i = 0; i <barcodes.length ; i++) {
-            if(m.containsKey(barcodes[i]))
-                m.put(barcodes[i],m.get(barcodes[i])+1);
-            else{
-                m.put(barcodes[i],1);
-            }
+        Map<Integer, Integer> map = new HashMap<>();
+        Arrays.sort(barcodes);
+        for (int i = barcodes.length - 1; i >= 0; i--) {
+            map.put(barcodes[i], map.getOrDefault(barcodes[i], 0) + 1);
         }
-
-        Iterator<Map.Entry<Integer, Integer>> it=m.entrySet().iterator();
-        while (it.hasNext()){
-            Map.Entry<Integer,Integer> e=it.next();
-            if(map.containsKey(e.getValue())){
-                ArrayList<Integer> list=map.get(e.getValue());
-                list.add(e.getKey());
-                map.put(e.getValue(),list);
-            }else{
-                ArrayList<Integer> l=new ArrayList<>();
-                l.add(e.getKey());
-                map.put(e.getValue(),l);
-            }
-        }
-        System.out.println(map);
-
-        Iterator<Map.Entry<Integer, ArrayList<Integer>>> iter=map.entrySet().iterator();
-
-        ArrayList<Integer> list=new ArrayList<>();
-        while (iter.hasNext()){
-            Map.Entry<Integer, ArrayList<Integer>> e=iter.next();
-            int k=e.getKey();
-            for (int i = 0; i < e.getValue().size(); i++) {
-                int val=e.getValue().get(i);
-                for (int j = 0; j <k ; j++) {
-                    list.add(val);
+        // Here using the priority queue to sort the map with highest value first
+        PriorityQueue<Map.Entry<Integer, Integer>> pq = new PriorityQueue<>((a, b) -> b.getValue() - a.getValue());
+        pq.addAll(map.entrySet());
+        int idx = 0;
+        Arrays.fill(barcodes, -1);
+        while (!pq.isEmpty()) {
+            Map.Entry m = pq.poll();
+            int key = (int) m.getKey();
+            int val = (int) m.getValue();
+            int j = val;
+            while (j > 0) {
+                if (barcodes[idx] == -1) {
+                    barcodes[idx] = key;
+                    idx = idx + 2;
+                    j--;
+                } else {
+                    idx++;
+                }
+                if (idx >= barcodes.length) {
+                    idx = 0;
                 }
             }
         }
-
-       // list.stream().forEach(val-> System.out.println(val));
-
-        ArrayList<Integer> result=new ArrayList<>();
-
-        boolean flag=true;
-        int i=0;
-        int j=list.size()-1;
-        while (i<=j){
-            if(flag==true){
-                result.add(list.get(i));
-                i++;
-                flag=false;
-            }else{
-                result.add(list.get(j));
-                j--;
-                flag=true;
-            }
-
-        }
-        //result.stream().forEach(val-> System.out.println(val));
-
-        int[] res=new int[result.size()];
-        for (int k = 0; k <result.size() ; k++) {
-            res[k]=result.get(k);
-        }
-        return res;
+        return barcodes;
 
     }
-
-    private void swapBarcode(int i, int j, int[] barcodes) {
-        int temp = barcodes[j];
-        barcodes[j] = barcodes[i];
-        barcodes[i] = temp;
-    }
-
-
 }
