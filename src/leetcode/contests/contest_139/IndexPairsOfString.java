@@ -41,21 +41,32 @@ public class IndexPairsOfString {
         int[][] result = indexPairsOfString.indexPairs("ababa", new String[]{"aba", "ab"});
     }
     private int[][] indexPairs(String text, String[] words) {
-        List<Sample> list = new ArrayList<>();
+        TreeMap<Integer,List<Integer>> map = new TreeMap<>();
         for (int i = 0; i < words.length; i++) {
             String word = words[i];
             List<Integer> startPos = findWord(text, word);
             for (int j = 0; j < startPos.size(); j++) {
-                Sample s = new Sample(startPos.get(j), startPos.get(j) + word.length() - 1);
-                list.add(s);
+                int s=startPos.get(j);
+                int e=s+word.length()-1;
+                map.computeIfAbsent(s,k->new ArrayList<>()).add(e);
             }
         }
-        Collections.sort(list);
-        int[][] result = new int[list.size()][2];
-        for (int i = 0; i < list.size(); i++) {
-            result[i] = new int[]{list.get(i).start, list.get(i).end};
+        System.out.println(map);
+        ArrayList<int[]> resultList=new ArrayList<>();
+
+        Iterator<Map.Entry<Integer, List<Integer>>> iterator=map.entrySet().iterator();
+        while (iterator.hasNext()){
+            Map.Entry<Integer,List<Integer>> entry=iterator.next();
+            int start=entry.getKey();
+            List<Integer> val=entry.getValue();
+            Collections.sort(val);
+            for (int i = 0; i < val.size(); i++) {
+                resultList.add(new int[]{start,val.get(i)});
+            }
         }
-        return result;
+
+        //System.out.println(resultList);
+        return (int[][]) resultList.toArray();
     }
 
     private List<Integer> findWord(String textString, String word) {
