@@ -13,8 +13,8 @@ public class FixedPoint {
     }
 
     @Test
-    public void simpleTest(){
-        Assertions.assertEquals(-1,fixedPoint.fixedPoint(new int[]{-10,-5,3,4,7,9}));
+    public void simpleTest() {
+        Assertions.assertEquals(-1, fixedPoint.fixedPoint(new int[]{-10, -5, 3, 4, 7, 9}));
     }
 
     public int fixedPoint(int[] A) {
@@ -26,24 +26,12 @@ public class FixedPoint {
     int binarySearch(int arr[], int l, int r) {
         if (r >= l) {
             int mid = l + (r - l) / 2;
-
-            // If the element is present at the middle
-            // itself
             if (arr[mid] == mid)
                 return mid;
-
-            // If element is smaller than mid, then
-            // it can only be present in left subarray
             if (arr[mid] > mid)
                 return binarySearch(arr, l, mid - 1);
-
-            // Else the element can only be present
-            // in right subarray
             return binarySearch(arr, mid + 1, r);
         }
-
-        // We reach here when element is not
-        // present in array
         return -1;
     }
 }
