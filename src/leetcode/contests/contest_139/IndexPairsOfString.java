@@ -1,5 +1,6 @@
 package leetcode.contests.contest_139;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,15 +15,10 @@ public class IndexPairsOfString {
     }
 
     @Test
-    public void testFirst() {
+    public void firstSimpleExample() {
         int[][] result = indexPairsOfString.indexPairs("thestoryofleetcodeandme", new String[]{"story", "fleet", "leetcode"});
+        Assertions.assertArrayEquals(new int[][]{{3,7},{9,13},{10,17}},result);
     }
-
-    @Test
-    public void testSecond() {
-        int[][] result = indexPairsOfString.indexPairs("ababa", new String[]{"aba", "ab"});
-    }
-
     private int[][] indexPairs(String text, String[] words) {
         TreeMap<Integer, List<Integer>> map = new TreeMap<>();
         for (int i = 0; i < words.length; i++) {
