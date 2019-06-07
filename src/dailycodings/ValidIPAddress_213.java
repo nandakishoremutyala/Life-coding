@@ -32,7 +32,6 @@ public class ValidIPAddress_213 {
                     }
                     snew = s;
 
-
                 }
             }
 
