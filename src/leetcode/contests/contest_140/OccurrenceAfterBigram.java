@@ -47,7 +47,6 @@ public class OccurrenceAfterBigram {
             }
             pos++;
         }
-        // System.out.println(sb.toString());
         String[] result = new String[0];
         if(sb.toString().length()>1)
             result = sb.toString().substring(0, sb.toString().length() - 1).split(",");
