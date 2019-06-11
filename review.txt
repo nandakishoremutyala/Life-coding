@@ -28,6 +28,4 @@
 02. Dailycodings -130
 03. Dailycodings -135
 
-add a test
-
 
