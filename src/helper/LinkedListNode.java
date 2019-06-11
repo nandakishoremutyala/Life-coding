@@ -9,6 +9,10 @@ public class LinkedListNode {
     public LinkedListNode() {
     }
 
+    public LinkedListNode(int val){
+        this.val=val;
+    }
+
     public LinkedListNode(int val,
                           LinkedListNode prev,
                           LinkedListNode next,
