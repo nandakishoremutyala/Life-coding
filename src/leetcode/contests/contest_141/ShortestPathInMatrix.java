@@ -10,7 +10,6 @@ import java.util.Queue;
 public class ShortestPathInMatrix {
     ShortestPathInMatrix shortestPathInMatrix;
     private int dir[][] = new int[][]{{0, 1}, {0, -1}, {1, 0}, {-1, 0}, {1, -1}, {-1, 1}, {-1, -1}, {1, 1}};
-    int m, n;
 
     @BeforeEach
     public void init() {
@@ -23,14 +22,6 @@ public class ShortestPathInMatrix {
         int result = shortestPathInMatrix.shortestPathBinaryMatrix(input);
         Assertions.assertEquals(2, result);
     }
-
-    boolean isValid(int row, int col) {
-        // return true if row number and column number
-        // is in range
-        return (row >= 0) && (row < m) &&
-                (col >= 0) && (col < n);
-    }
-
 
     public int shortestPathBinaryMatrix(int[][] grid) {
         int m = grid.length;
@@ -60,12 +51,10 @@ public class ShortestPathInMatrix {
                         queue.add(new int[]{nextX, nextY});
                         visited[nextX][nextY] = true;
                     }
-
                 }
             }
             distance++;
         }
-
         return -1;
     }
 }
