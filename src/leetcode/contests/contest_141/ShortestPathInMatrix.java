@@ -1,5 +1,6 @@
 package leetcode.contests.contest_141;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -8,74 +9,63 @@ import java.util.Queue;
 
 public class ShortestPathInMatrix {
     ShortestPathInMatrix shortestPathInMatrix;
-    int[] x;
-    int[] y;
-    int ROW;
-    int COL;
-
-    class Node {
-        int r;
-        int c;
-        int dist;
-
-        Node(int r, int c, int dis) {
-            this.r = r;
-            this.c = c;
-            this.dist = dis;
-        }
-    }
+    private int dir[][] = new int[][]{{0, 1}, {0, -1}, {1, 0}, {-1, 0}, {1, -1}, {-1, 1}, {-1, -1}, {1, 1}};
+    int m, n;
 
     @BeforeEach
     public void init() {
-
+        shortestPathInMatrix = new ShortestPathInMatrix();
     }
 
     @Test
     public void firstTest() {
         int[][] input = new int[][]{{0, 1}, {1, 0}};
-        int result = shortestPathBinaryMatrix(input);
-        System.out.println(result);
+        int result = shortestPathInMatrix.shortestPathBinaryMatrix(input);
+        Assertions.assertEquals(2, result);
     }
 
     boolean isValid(int row, int col) {
         // return true if row number and column number
         // is in range
-        return (row >= 0) && (row < ROW) &&
-                (col >= 0) && (col < COL);
+        return (row >= 0) && (row < m) &&
+                (col >= 0) && (col < n);
     }
 
-    Queue<Node> queue;
 
     public int shortestPathBinaryMatrix(int[][] grid) {
-        if (grid[0][0] == 1) return 0;
-        x = new int[]{-1, 0, 0, 1, 1, -1, -1, 1};
-        y = new int[]{0, -1, 1, 0, 1, -1, 1, -1};
-        int dy = grid.length;
-        COL = dy;
-        int dx = grid[0].length;
-        ROW = dx;
-        boolean[][] visited = new boolean[dx][dy];
-        queue = new LinkedList<>();
-        queue.add(new Node(0, 0, 1));
-        return bfs(grid, visited);
-    }
+        int m = grid.length;
+        int n = grid[0].length;
 
-    int bfs(int[][] grid,
-            boolean[][] visited) {
+        if (grid[0][0] == 1 || grid[m - 1][n - 1] == 1) {
+            return -1;
+        }
+
+        boolean[][] visited = new boolean[m][n];
+        visited[0][0] = true;
+        Queue<int[]> queue = new LinkedList<>();
+        queue.add(new int[]{0, 0});
+        int distance = 0;
         while (!queue.isEmpty()) {
-            Node item = queue.poll();
-            if (item.r == ROW - 1 && item.c == COL - 1)
-                return item.dist;
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                int[] pop = queue.remove();
+                if (pop[0] == m - 1 && pop[1] == n - 1) {
+                    return distance + 1;
+                }
+                for (int k = 0; k < 8; k++) {
+                    int nextX = dir[k][0] + pop[0];
+                    int nextY = dir[k][1] + pop[1];
 
-            for (int i = 0; i < 8; i++) {
-                int nr = item.r + x[i];
-                int nc = item.c + y[i];
-                if (isValid(nr, nc) && grid[nr][nc] == 0) {
-                    visited[nr][nc] = true;
-                    queue.add(new Node(nr, nc, item.dist + 1));
+                    if (nextX >= 0 && nextX < m && nextY >= 0 && nextY < n && !visited[nextX][nextY] && grid[nextX][nextY] == 0) {
+                        queue.add(new int[]{nextX, nextY});
+                        visited[nextX][nextY] = true;
+                    }
+
                 }
             }
+            distance++;
         }
+
         return -1;
     }
 }
