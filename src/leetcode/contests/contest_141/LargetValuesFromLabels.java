@@ -6,42 +6,65 @@ import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
-public class LargetValuesFromLabels {
-    LargetValuesFromLabels largetValuesFromLabels;
+class LargestValuesFromLabels {
+    LargestValuesFromLabels largestValuesFromLabels;
+
+    class Item {
+        int val, pos;
+
+        Item(int val, int pos) {
+            this.val = val;
+            this.pos = pos;
+        }
+
+        public int getVal() {
+            return val;
+        }
+
+        public void setVal(int val) {
+            this.val = val;
+        }
+    }
 
     @BeforeEach
     public void init() {
-        largetValuesFromLabels = new LargetValuesFromLabels();
+        largestValuesFromLabels = new LargestValuesFromLabels();
     }
 
     @Test
     public void firstTest() {
-        int result = largetValuesFromLabels.largestValsFromLabels(new int[]{5, 4, 3, 2, 1},
+        int result = largestValuesFromLabels.largestValsFromLabels(new int[]{5, 4, 3, 2, 1},
                 new int[]{1, 1, 2, 2, 3},
                 3,
                 1);
         Assertions.assertEquals(9, result);
-
     }
 
     @Test
     public void secondTest() {
-        int result = largetValuesFromLabels.largestValsFromLabels(new int[]{5, 4, 3, 2, 1},
-                new int[]{1,3,3,3,2},
+        int result = largestValuesFromLabels.largestValsFromLabels(new int[]{5, 4, 3, 2, 1},
+                new int[]{1, 3, 3, 3, 2},
                 3,
                 2);
-        Assertions.assertEquals(9, result);
-
+        Assertions.assertEquals(12, result);
     }
 
     @Test
     public void thirdTest() {
-
+        int result = largestValuesFromLabels.largestValsFromLabels(new int[]{9, 8, 8, 7, 6},
+                new int[]{0, 0, 0, 1, 1},
+                3,
+                1);
+        Assertions.assertEquals(16, result);
     }
 
     @Test
     public void fourthTest() {
-
+        int result = largestValuesFromLabels.largestValsFromLabels(new int[]{9, 8, 8, 7, 6},
+                new int[]{0, 0, 0, 1, 1},
+                3,
+                2);
+        Assertions.assertEquals(24, result);
     }
 
     public int largestValsFromLabels(int[] values,
@@ -49,31 +72,34 @@ public class LargetValuesFromLabels {
                                      int num_wanted,
                                      int use_limit) {
         int max_sum = 0;
-        TreeMap<Integer, ArrayList<Integer>> groups = new TreeMap<>(Collections.reverseOrder());
-        for (int i = 0; i < labels.length; i++) {
-            groups.compute(labels[i], (k, v) -> v == null ? new ArrayList<>() : v).add(values[i]);
+        PriorityQueue<Item> pq = new PriorityQueue<>((o1, o2) -> {
+            if (o1.val < o2.val)
+                return 1;
+            else if (o1.val > o2.val)
+                return -1;
+            else
+                return 0;
+
+        });
+        for (int i = 0; i < values.length; i++) {
+            pq.add(new Item(values[i], i));
         }
-        System.out.println(groups);
+
+        HashMap<Integer, Integer> groupCounter = new HashMap<>();
+        for (int i = 0; i < labels.length; i++) {
+            groupCounter.put(labels[i], 0);
+        }
         int limit = 0;
-        Iterator<Map.Entry<Integer, ArrayList<Integer>>> it = groups.entrySet().iterator();
-        while (limit < num_wanted && it.hasNext()) {
-            Map.Entry<Integer, ArrayList<Integer>> entry = it.next();
-            ArrayList<Integer> elements = entry.getValue();
-            Collections.sort(elements, Collections.reverseOrder());
-            // use_limit> higher than the size, take all the elements
-            if (use_limit >= elements.size()) {
-                int s = elements.stream().mapToInt(Integer::intValue).sum();
-                max_sum += s;
-
-            } else {
-                for (int i = 0; i < use_limit; i++) {
-                    max_sum += elements.get(i);
-
-                }
+        while (!pq.isEmpty() && limit < num_wanted) {
+            Item it = pq.poll();
+            //take the element if group is not reach the limit yet
+            if (groupCounter.get(labels[it.pos]) < use_limit) {
+                groupCounter.computeIfPresent(labels[it.pos], (k, v) -> v + 1);
+                max_sum += it.val;
+                limit++;
             }
-            limit++;
+
         }
         return max_sum;
-
     }
 }
