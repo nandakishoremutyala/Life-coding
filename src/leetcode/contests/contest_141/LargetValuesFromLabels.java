@@ -92,7 +92,6 @@ class LargestValuesFromLabels {
         int limit = 0;
         while (!pq.isEmpty() && limit < num_wanted) {
             Item it = pq.poll();
-            //take the element if group is not reach the limit yet
             if (groupCounter.get(labels[it.pos]) < use_limit) {
                 groupCounter.computeIfPresent(labels[it.pos], (k, v) -> v + 1);
                 max_sum += it.val;
