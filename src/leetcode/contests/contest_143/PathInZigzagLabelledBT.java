@@ -4,10 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class PathInZigzagLabelledBT {
     PathInZigzagLabelledBT mPathInZigzagLabelledBT;
@@ -19,16 +16,13 @@ public class PathInZigzagLabelledBT {
 
     @Test
     public void firstTest() {
-        List<Integer> result = mPathInZigzagLabelledBT.pathInZigZagTree(14);
-        Assertions.assertEquals(4, result.size());
-
+        List<Integer> result = mPathInZigzagLabelledBT.pathInZigZagTree(26);
+        List<Integer> expected = Arrays.asList(1, 2, 6, 10, 26);
+        Assertions.assertEquals(expected, result);
     }
 
     public List<Integer> pathInZigZagTree(int label) {
-
         List<Integer> result = new ArrayList<>();
-        System.out.println(label);
-
         while (label > 1) {
             result.add(label);
             int curLevel = computeLevelAndDirection(label);
