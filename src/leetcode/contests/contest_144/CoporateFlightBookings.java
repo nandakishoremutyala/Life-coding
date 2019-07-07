@@ -28,7 +28,7 @@ public class CoporateFlightBookings {
     public void secondTest() {
         int[][] input = new int[][]{{2, 2, 30}, {2, 2, 45}};
         int n = 2;
-        int[] expected = new int[]{0,75};
+        int[] expected = new int[]{0, 75};
         int[] actual = mCoporateFlightBookings.corpFlightBookings(input, n);
         Assertions.assertArrayEquals(expected, actual);
     }
@@ -36,14 +36,13 @@ public class CoporateFlightBookings {
     public int[] corpFlightBookings(int[][] bookings, int n) {
         if (n == 0) return new int[0];
         int[] result = new int[n];
-        TreeMap<Integer, Integer> map = new TreeMap<>();
         for (int i = 0; i < bookings.length; i++) {
             int[] booking = bookings[i];
             int start = booking[0];
             int end = booking[1];
             int seats = booking[2];
             for (int j = start; j <= end; j++) {
-                result[j-1]=result[j-1]+seats;
+                result[j - 1] = result[j - 1] + seats;
 
             }
         }
