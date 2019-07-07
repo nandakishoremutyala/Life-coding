@@ -35,6 +35,7 @@ public class CoporateFlightBookings {
 
     public int[] corpFlightBookings(int[][] bookings, int n) {
         if (n == 0) return new int[0];
+        int[] result = new int[n];
         TreeMap<Integer, Integer> map = new TreeMap<>();
         for (int i = 0; i < bookings.length; i++) {
             int[] booking = bookings[i];
@@ -42,14 +43,9 @@ public class CoporateFlightBookings {
             int end = booking[1];
             int seats = booking[2];
             for (int j = start; j <= end; j++) {
-                map.compute(j, (k, v) -> v == null ? seats : v + seats);
-            }
-        }
-        int[] result = new int[n];
-        for (int j = 0; j < n; j++) {
-            int val=map.get(j+1)==null?0:map.get(j+1);
-            result[j]=val;
+                result[j-1]=result[j-1]+seats;
 
+            }
         }
         return result;
     }
