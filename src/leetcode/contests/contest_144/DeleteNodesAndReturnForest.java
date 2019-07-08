@@ -14,7 +14,7 @@ import java.util.Set;
 public class DeleteNodesAndReturnForest {
     DeleteNodesAndReturnForest mDeleteNodesAndReturnForest;
     TreeNode root;
-    int[] todel;
+    int[] to_be_deleted;
 
     @BeforeEach
     public void init() {
@@ -27,13 +27,14 @@ public class DeleteNodesAndReturnForest {
 
         root.right.left = new TreeNode(6);
         root.right.right = new TreeNode(7);
-        todel = new int[]{3, 5};
+        to_be_deleted = new int[]{3, 5};
         mDeleteNodesAndReturnForest = new DeleteNodesAndReturnForest();
     }
+
     @Test
-    public void firstTest(){
-        List<TreeNode> result= mDeleteNodesAndReturnForest.delNodes(root,todel);
-        Assertions.assertEquals(result.size(),3);
+    public void firstTest() {
+        List<TreeNode> result = mDeleteNodesAndReturnForest.delNodes(root, to_be_deleted);
+        Assertions.assertEquals(result.size(), 3);
 
     }
 
@@ -51,19 +52,25 @@ public class DeleteNodesAndReturnForest {
     private void dfs(TreeNode root,
                      Set<Integer> del,
                      List<TreeNode> result, boolean isRoot) {
-        //if current root does not contain in the del and it is root, then add to the result
+        //if current root does not contain in the del and it is root,
+        // then add to the result
         if (!del.contains(root.val) && isRoot)
             result.add(root);
 
+        // check parents is on the list of 'to_be_deleted'
         isRoot = del.contains(root.val);
-        //if the parent node is deleted, then child is the root
+
+        // As we are doing DFS, we need check left node and right node
         if (root.left != null) {
             dfs(root.left, del, result, isRoot);
+            // If the child node is on the 'to_be_deleted' list, replace it will null
             if (del.contains(root.left.val))
                 root.left = null;
         }
+
         if (root.right != null) {
             dfs(root.right, del, result, isRoot);
+            // If the child node is on the 'to_be_deleted' list, replace it will null
             if (del.contains(root.right.val))
                 root.right = null;
         }
