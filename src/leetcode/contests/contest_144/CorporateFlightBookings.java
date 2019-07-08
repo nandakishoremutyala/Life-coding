@@ -4,15 +4,14 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.TreeMap;
 
-public class CoporateFlightBookings {
+public class CorporateFlightBookings {
 
-    CoporateFlightBookings mCoporateFlightBookings;
+    CorporateFlightBookings mCorporateFlightBookings;
 
     @BeforeEach
     public void init() {
-        mCoporateFlightBookings = new CoporateFlightBookings();
+        mCorporateFlightBookings = new CorporateFlightBookings();
     }
 
     @Test
@@ -20,7 +19,7 @@ public class CoporateFlightBookings {
         int[][] input = new int[][]{{1, 2, 10}, {2, 3, 20}, {2, 5, 25}};
         int n = 5;
         int[] expected = new int[]{10, 55, 45, 25, 25};
-        int[] actual = mCoporateFlightBookings.corpFlightBookings(input, n);
+        int[] actual = mCorporateFlightBookings.corpFlightBookings(input, n);
         Assertions.assertArrayEquals(expected, actual);
     }
 
@@ -29,7 +28,7 @@ public class CoporateFlightBookings {
         int[][] input = new int[][]{{2, 2, 30}, {2, 2, 45}};
         int n = 2;
         int[] expected = new int[]{0, 75};
-        int[] actual = mCoporateFlightBookings.corpFlightBookings(input, n);
+        int[] actual = mCorporateFlightBookings.corpFlightBookings(input, n);
         Assertions.assertArrayEquals(expected, actual);
     }
 
@@ -43,7 +42,6 @@ public class CoporateFlightBookings {
             int seats = booking[2];
             for (int j = start; j <= end; j++) {
                 result[j - 1] = result[j - 1] + seats;
-
             }
         }
         return result;
