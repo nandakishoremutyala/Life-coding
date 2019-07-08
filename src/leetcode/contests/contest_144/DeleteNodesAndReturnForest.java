@@ -1,13 +1,42 @@
 package leetcode.contests.contest_144;
 
 import leetcode.TreeNode;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+
 public class DeleteNodesAndReturnForest {
+    DeleteNodesAndReturnForest mDeleteNodesAndReturnForest;
+    TreeNode root;
+    int[] todel;
+
+    @BeforeEach
+    public void init() {
+        root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+
+        root.left.left = new TreeNode(4);
+        root.left.right = new TreeNode(5);
+
+        root.right.left = new TreeNode(6);
+        root.right.right = new TreeNode(7);
+        todel = new int[]{3, 5};
+        mDeleteNodesAndReturnForest = new DeleteNodesAndReturnForest();
+    }
+    @Test
+    public void firstTest(){
+        List<TreeNode> result= mDeleteNodesAndReturnForest.delNodes(root,todel);
+        Assertions.assertEquals(result.size(),3);
+
+    }
+
     public List<TreeNode> delNodes(TreeNode root, int[] to_delete) {
         List<TreeNode> result = new ArrayList<>();
         Set<Integer> set = new HashSet<>();
