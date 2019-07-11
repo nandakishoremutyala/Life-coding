@@ -26,6 +26,12 @@ public class BracketMatch {
         Assertions.assertEquals(2, actual);
     }
 
+    /**
+     * 1. if there is not equal number of bracket in different sign, there is no
+     * way to match. so we need to track the diff counter.
+     * 2. If diff counter become negative, we need to make it positive and track that
+     * how much has been added to make it positive.
+     * */
     public int bracketMatch(String text) {
         int diffCounter = 0;
         int ans = 0;
@@ -41,6 +47,5 @@ public class BracketMatch {
             }
         }
         return diffCounter + ans;
-
     }
 }
