@@ -64,7 +64,6 @@ public class RelativeSortArray {
             }
             start++;
         }
-
         Collections.sort(second);
 
         first.addAll(second);
