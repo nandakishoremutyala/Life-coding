@@ -4,61 +4,51 @@ import leetcode.TreeNode;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.HashMap;
-import java.util.Map;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class MaximumLevelSumOfBT {
     MaximumLevelSumOfBT maximumLevelSumOfBT;
     TreeNode root = new TreeNode(1);
-    static Map<Integer, Integer> level;
-    static int max = Integer.MIN_VALUE;
-    static int maxLevel=0;
 
     @BeforeEach
     public void init() {
-        buildtree(root);
+        buildTree(root);
         maximumLevelSumOfBT = new MaximumLevelSumOfBT();
     }
 
-    private void buildtree(TreeNode root) {
+    private void buildTree(TreeNode root) {
         root.left = new TreeNode(7);
         root.right = new TreeNode(0);
         root.left.left = new TreeNode(7);
         root.left.right = new TreeNode(-8);
-        //root.right.right.right = new TreeNode(-32127);
     }
 
     @Test
     public void firstTest() {
-        int max= maximumLevelSumOfBT.maxLevelSum(root);
-        Assertions.assertEquals(2,max);
+        int max = maximumLevelSumOfBT.maxLevelSum(root);
+        Assertions.assertEquals(2, max);
     }
 
     public int maxLevelSum(TreeNode root) {
-        level = new HashMap<>();
-        computeLevel(root, 0);
-        System.out.println(level);
-        for (Map.Entry<Integer,Integer> entry : level.entrySet()) {
-            int val = entry.getValue();
-            if(val>=max){
-                max=val;
-                maxLevel=entry.getKey();
+        if (root == null) return 0;
+        int maxlevel = 1, maxSum = root.val, level = 1;
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(root);
+        while (!q.isEmpty()) {
+            int levelSum = 0, size = q.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode node = q.poll();
+                if (node.left != null) q.offer(node.left);
+                if (node.right != null) q.offer(node.right);
+                levelSum += node.val;
             }
+            if (levelSum > maxSum) {
+                maxSum = levelSum;
+                maxlevel = level;
+            }
+            level++;
         }
-        return maxLevel+1;
-    }
-
-    private void computeLevel(TreeNode root,
-                              int curLevel) {
-        if (root == null)
-            return;
-        if (level.containsKey(curLevel)) {
-            int nVal = level.get(curLevel) + root.val;
-            level.put(curLevel, nVal);
-        } else
-            level.put(curLevel, root.val);
-        computeLevel(root.left, curLevel + 1);
-        computeLevel(root.right, curLevel + 1);
+        return maxlevel;
     }
 }
