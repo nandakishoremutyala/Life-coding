@@ -4,17 +4,16 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class CountCharacters_5048 {
-    CountCharacters_5048 countCharacters;
+public class CountCharacters {
+    CountCharacters countCharacters;
 
     @BeforeEach
     public void init() {
-        countCharacters = new CountCharacters_5048();
+        countCharacters = new CountCharacters();
     }
 
     @Test

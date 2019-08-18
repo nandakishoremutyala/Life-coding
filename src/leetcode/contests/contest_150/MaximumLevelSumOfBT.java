@@ -41,12 +41,11 @@ public class MaximumLevelSumOfBT {
         System.out.println(level);
         for (Map.Entry<Integer,Integer> entry : level.entrySet()) {
             int val = entry.getValue();
-            if(val>max){
+            if(val>=max){
                 max=val;
                 maxLevel=entry.getKey();
             }
         }
-
         return maxLevel+1;
     }
 
