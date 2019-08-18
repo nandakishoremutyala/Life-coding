@@ -79,6 +79,11 @@ int[] sorted = IntStream.of(inputArray)
         Map<String, Long> map1=         list.stream().collect(groupingBy(identity(), counting()));
 
 ```        
+Alternatively,
+```
+HashMap<String,Long> map= (HashMap<String, Long>) Arrays.stream(arr).collect(Collectors.groupingBy(Function.identity(),Collectors.counting()));
+```
+
 
 #### Sort list of object based on property
 ```$xslt
