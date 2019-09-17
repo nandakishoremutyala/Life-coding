@@ -10,12 +10,12 @@ public class FindingCriticalPoint {
         int v;
         /**
          * This set will be working as adjacency list.
-         * */
+         */
         HashSet<Integer>[] connections;
 
         /**
          * Create a graph data structure
-         * */
+         */
         Graph(int v) {
             this.v = v;
             connections = new HashSet[v];
@@ -64,7 +64,9 @@ public class FindingCriticalPoint {
         con4.add(1);
         con4.add(3);
         connections.add(con4);
+        long startTime=System.nanoTime();
         findingCriticalPoint.criticalConnections(4, connections);
+        System.out.println("Time Taken" +(System.nanoTime()-startTime));
     }
 
     public List<List<Integer>> criticalConnections(int n,
@@ -81,6 +83,7 @@ public class FindingCriticalPoint {
             graph.removeConnection(connection.get(0), connection.get(1));
 
             int numberOfConnectedComponents = getConnectedComponents(graph, n);
+            System.out.println("Number of components: "+numberOfConnectedComponents);
             if (numberOfConnectedComponents > 1)
                 result.add(connection);
             graph.addConnection(connection.get(0), connection.get(1));
@@ -91,8 +94,27 @@ public class FindingCriticalPoint {
 
     private int getConnectedComponents(Graph graph, int n) {
         int numComponents = 0;
-        boolean[] visited=new boolean[n];
-        Queue<Integer> queue=new LinkedList<>();
+        boolean[] visited = new boolean[n];
+        Queue<Integer> queue = new LinkedList<>();
+        for (int i = 0; i < n; i++) {
+            if(!visited[i]){
+                queue.add(i);
+                numComponents++;
+            }
+            while (!queue.isEmpty()){
+                Integer node=queue.poll();
+                if(!visited[node]){
+                    HashSet<Integer> sets = graph.connections[node];
+                    Iterator it = sets.iterator();
+                    while (it.hasNext()) {
+                        int data= (int) it.next();
+                        if(!visited[data])
+                            queue.add(data);
+                    }
+                }
+                visited[node]=true;
+            }
+        }
 
         return numComponents;
     }
