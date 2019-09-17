@@ -1,5 +1,6 @@
 package leetcode.contests.contest_154;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -36,14 +37,15 @@ public class FindingCriticalPoint {
     }
 
     FindingCriticalPoint findingCriticalPoint;
+    List<List<Integer>> connections;
 
     @BeforeEach
     public void init() {
         findingCriticalPoint = new FindingCriticalPoint();
+        connections=createDummyData();
     }
 
-    @Test
-    public void firstTest() {
+    private List<List<Integer>> createDummyData() {
         List<List<Integer>> connections = new ArrayList<>();
         List<Integer> con1 = new ArrayList<>();
         con1.add(0);
@@ -64,9 +66,13 @@ public class FindingCriticalPoint {
         con4.add(1);
         con4.add(3);
         connections.add(con4);
-        long startTime=System.nanoTime();
-        findingCriticalPoint.criticalConnections(4, connections);
-        System.out.println("Time Taken" +(System.nanoTime()-startTime));
+        return connections;
+
+    }
+
+    @Test
+    public void firstTest() {
+        Assertions.assertEquals(1,findingCriticalPoint.criticalConnections(4, connections).size());
     }
 
     public List<List<Integer>> criticalConnections(int n,
@@ -76,12 +82,9 @@ public class FindingCriticalPoint {
         for (List<Integer> connection : connections) {
             graph.addConnection(connection.get(0), connection.get(1));
         }
-
         System.out.println(graph.connections);
-
         for (List<Integer> connection : connections) {
             graph.removeConnection(connection.get(0), connection.get(1));
-
             int numberOfConnectedComponents = getConnectedComponents(graph, n);
             System.out.println("Number of components: "+numberOfConnectedComponents);
             if (numberOfConnectedComponents > 1)
@@ -115,7 +118,6 @@ public class FindingCriticalPoint {
                 visited[node]=true;
             }
         }
-
         return numComponents;
     }
 }
