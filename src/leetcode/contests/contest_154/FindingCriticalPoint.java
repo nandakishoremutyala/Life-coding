@@ -36,8 +36,9 @@ public class FindingCriticalPoint {
         }
     }
 
-    FindingCriticalPoint findingCriticalPoint;
-    List<List<Integer>> connections;
+    private FindingCriticalPoint findingCriticalPoint;
+
+    private List<List<Integer>> connections;
 
     @BeforeEach
     public void init() {
