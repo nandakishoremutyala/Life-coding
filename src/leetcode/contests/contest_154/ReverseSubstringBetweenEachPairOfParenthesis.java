@@ -65,9 +65,9 @@ public class ReverseSubstringBetweenEachPairOfParenthesis {
         return result.toString();
     }
 
-    private void addAllIntoQueue(Deque<Character> queue, StringBuilder sb) {
+    private void addAllIntoQueue(Deque<Character> stack, StringBuilder sb) {
         for (char c : sb.toString().toCharArray()) {
-            queue.add(c);
+            stack.add(c);
         }
     }
 }
