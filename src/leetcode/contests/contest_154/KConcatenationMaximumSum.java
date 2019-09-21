@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 public class KConcatenationMaximumSum {
     private KConcatenationMaximumSum kConcatenationMaximumSum;
-
+    public static int mod = (int)(Math.pow(10, 9) + 7);
     @BeforeEach
     public void init() {
         kConcatenationMaximumSum = new KConcatenationMaximumSum();
@@ -64,6 +64,6 @@ public class KConcatenationMaximumSum {
             }
             end++;
         }
-        return max_so_far;
+        return max_so_far%1000000007;
     }
 }
