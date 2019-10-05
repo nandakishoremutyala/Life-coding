@@ -3,21 +3,23 @@ package leetcode.contests.contest_156;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.LinkedList;
+
 
 public class RemoveAllAdjacentDuplicatesInStringII {
     RemoveAllAdjacentDuplicatesInStringII removeAllAdjacentDuplicatesInStringII;
 
-    class Data {
+    class Data{
         char c;
         int count;
-
-        Data(char c, int count) {
-            this.c = c;
-            this.count = count;
+        Data( int count,char c){
+            this.c=c;
+            this.count=count;
         }
     }
-
     @BeforeEach
     public void init() {
         removeAllAdjacentDuplicatesInStringII = new RemoveAllAdjacentDuplicatesInStringII();
@@ -48,29 +50,28 @@ public class RemoveAllAdjacentDuplicatesInStringII {
     }
 
     public String removeDuplicates(String s, int k) {
-        LinkedList<Data> counter = new LinkedList<>();
-        StringBuilder sb = new StringBuilder(s);
-        for (int i = 0; i < sb.length(); i++) {
-            char c = sb.charAt(i);
-            if (counter.size()==0) {
-                counter.add(new Data(c, 1));
-            } else {
-                if (counter.getLast().c == c) {
-                    Data d = new Data(c, counter.getLast().count + 1);
-                    counter.remove(counter.getLast());
-                    counter.add(d);
-                } else {
-                    counter.add(new Data(c, 1));
-                }
-            }
+        Deque<Data> stack = new ArrayDeque<>();
+        stack.push(new Data(0,'#'));
 
-            if (counter.getLast().count == k) {
-                sb.delete(i - k+1, i+1);
-                counter.removeLast();
-                i=i-k;
+        for (char c : s.toCharArray()) {
+            if (stack.peek().c != c) {
+                stack.push(new Data(1, c));
+            } else {
+                int count = stack.peek().count + 1;
+                stack.pop();
+                if (count != k)
+                    stack.push(new Data(count, c));
             }
         }
-        return sb.toString();
+        StringBuilder stringBuilder = new StringBuilder();
+        while (!stack.isEmpty()) {
+            for (int i = 0; i < stack.peek().count; i++) {
+                stringBuilder.append(stack.peek().c);
+            }
+            stack.pop();
+        }
+
+        return stringBuilder.reverse().toString();
     }
 
 }
