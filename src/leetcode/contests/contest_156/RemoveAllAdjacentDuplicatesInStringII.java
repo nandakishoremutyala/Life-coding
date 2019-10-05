@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.LinkedList;
 
 
 public class RemoveAllAdjacentDuplicatesInStringII {
@@ -70,8 +69,6 @@ public class RemoveAllAdjacentDuplicatesInStringII {
             }
             stack.pop();
         }
-
         return stringBuilder.reverse().toString();
     }
-
 }
