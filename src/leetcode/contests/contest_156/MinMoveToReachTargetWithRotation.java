@@ -8,8 +8,6 @@ import java.util.*;
 
 public class MinMoveToReachTargetWithRotation {
     MinMoveToReachTargetWithRotation minMoveToReachTargetWithRotation;
-    int[][] minMatrix;
-
     Set<SnakeMove> visited = new HashSet<>();
     int n;
 
@@ -66,13 +64,6 @@ public class MinMoveToReachTargetWithRotation {
 
     public int minimumMoves(int[][] grid) {
         n = grid.length;
-        HashSet<String> seen = new HashSet<>();
-        minMatrix = new int[grid.length][grid[0].length];
-        for (int i = 0; i < minMatrix.length; i++) {
-            for (int j = 0; j < minMatrix[0].length; j++) {
-                minMatrix[i][j] = 99999;
-            }
-        }
         SnakeMove s = new SnakeMove(0, 1, 0, 0, 0);
         Queue<SnakeMove> q = new LinkedList<>();
         q.add(s);
@@ -138,10 +129,10 @@ public class MinMoveToReachTargetWithRotation {
         }
 
         //Unable to move
-        if (snakeMove.hRow + 1 >= n ||
-                grid[snakeMove.hRow + 1][snakeMove.hCol] == 1 ||
+        if (snakeMove.hRow + 1 >= n || // to get the down point, row has to be incremented. safety check for increment
+                grid[snakeMove.hRow + 1][snakeMove.hCol] == 1 || //down of the head has to be 1
                 snakeMove.tRow + 1 >= n ||
-                grid[snakeMove.tRow + 1][snakeMove.tCol] == 1) {
+                grid[snakeMove.tRow + 1][snakeMove.tCol] == 1) {// down of the tail has to be 1
             return null;
         }
         SnakeMove clockP = new SnakeMove(snakeMove.hRow + 1, snakeMove.hCol - 1, snakeMove.tRow, snakeMove.tCol, moves + 1);
