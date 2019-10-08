@@ -4,32 +4,30 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 public class MinMoveToReachTargetWithRotation {
     MinMoveToReachTargetWithRotation minMoveToReachTargetWithRotation;
-    static int val = Integer.MAX_VALUE;
-
     int[][] minMatrix;
 
-    enum Direction {
-        RIGHT,
-        DOWN
-    }
+    Set<SnakeMove> visited = new HashSet<>();
+    int n;
 
     class SnakeMove {
-        int row;
-        int col;
-        Direction direction;
-        int val;
+        //h is for head
+        //t is for tail
+        int hRow;
+        int hCol;
+        int tRow;
+        int tCol;
+        int moves;
 
-        SnakeMove(int row, int col, Direction direction, int val) {
-            this.row = row;
-            this.col = col;
-            this.direction = direction;
-            this.val = val;
+        public SnakeMove(int hRow, int hCol, int tRow, int tCol, int moves) {
+            this.hRow = hRow;
+            this.hCol = hCol;
+            this.tRow = tRow;
+            this.tCol = tCol;
+            this.moves = moves;
         }
     }
 
@@ -67,67 +65,128 @@ public class MinMoveToReachTargetWithRotation {
     }
 
     public int minimumMoves(int[][] grid) {
+        n = grid.length;
+        HashSet<String> seen = new HashSet<>();
         minMatrix = new int[grid.length][grid[0].length];
         for (int i = 0; i < minMatrix.length; i++) {
             for (int j = 0; j < minMatrix[0].length; j++) {
-                minMatrix[i][j] = 9;
+                minMatrix[i][j] = 99999;
             }
         }
-        //minMatrix[0][1] = 0;
-        SnakeMove s = new SnakeMove(0, 1, Direction.RIGHT, -1);
-        Queue<SnakeMove> queue = new LinkedList<>();
-        queue.add(s);
+        SnakeMove s = new SnakeMove(0, 1, 0, 0, 0);
+        Queue<SnakeMove> q = new LinkedList<>();
+        q.add(s);
 
-        while (!queue.isEmpty()) {
-            SnakeMove sm = queue.poll();
-            minMatrix[sm.row][sm.col] = Math.min(sm.val + 1,
-                    minMatrix[sm.row][sm.col]);
-
-            if(sm.row==5 && sm.col==5)
-                System.out.println("ping pong"+minMatrix[5][5]);
-            if (isValidMove(grid, sm.row, sm.col + 1))
-                queue.add(new SnakeMove(sm.row, sm.col + 1, Direction.RIGHT, minMatrix[sm.row][sm.col]));
-
-            if (isValidMove(grid, sm.row + 1, sm.col))
-                queue.add(new SnakeMove(sm.row + 1, sm.col, Direction.DOWN, minMatrix[sm.row][sm.col]));
-
-            //anti-clockwise
-            if (isValidMove(grid, sm.row - 1, sm.col + 1) &&
-                    sm.direction == Direction.DOWN &&
-                    grid[sm.row][sm.col + 1] == 0 &&
-                    grid[sm.row - 1][sm.col + 1] == 0)
-            {
-                if (grid[sm.row - 1][sm.col + 1] == 0) {
-                    queue.add(new SnakeMove(sm.row - 1, sm.col + 1, Direction.DOWN, minMatrix[sm.row][sm.col]));
-                }
+        while (!q.isEmpty()) {
+            SnakeMove curMove = q.poll();
+            SnakeMove right = moveRight(grid, curMove, curMove.moves);
+            SnakeMove down = moveDown(grid, curMove, curMove.moves);
+            SnakeMove clk = moveClockwise(grid, curMove, curMove.moves);
+            SnakeMove aclk = moveAntiClockwise(grid, curMove, curMove.moves);
+            if (isDestination(curMove)) {
+                return curMove.moves;
+            }
+            if (right != null) {
+                q.offer(right);
+            }
+            if (down != null) {
+                q.offer(down);
+            }
+            if (clk != null) {
+                q.offer(clk);
+            }
+            if (aclk != null) {
+                q.offer(aclk);
             }
 
-            //clockwise
-            if (isValidMove(grid, sm.row + 1, sm.col - 1) &&
-                    sm.direction == Direction.RIGHT &&
-                    grid[sm.row + 1][sm.col] == 0 &&
-                    grid[sm.row + 1][sm.col - 1] == 0)
-            {
-                if (grid[sm.row + 1][sm.col - 1] == 0) {
-                    queue.add(new SnakeMove(sm.row + 1, sm.col - 1, Direction.RIGHT, minMatrix[sm.row][sm.col]));
-                }
-            }
-        }
-        if (minMatrix[grid.length-1][grid[0].length-1] == Integer.MAX_VALUE) return -1;
-        for (int i = 0; i <6 ; i++) {
-            for (int j = 0; j <6 ; j++) {
-                System.out.print(minMatrix[i][j]+" ");
-            }
-            System.out.println();
         }
 
-        return minMatrix[grid.length-1][grid[0].length-1] ;
+        return -1;
     }
 
-    public boolean isValidMove(int[][] grid, int r, int c) {
-        return ((c < grid[0].length) &&
-                (r < grid.length)) &&
-                ((c >= 0) && (r >= 0)) &&
-                grid[r][c] == 0;
+    private boolean isDestination(SnakeMove curMove) {
+        if (curMove.hRow == n - 1 && curMove.hCol == n - 1
+                && curMove.tRow == n - 1 && curMove.tCol == n - 2) {
+            return true;
+        }
+        return false;
+    }
+
+    private SnakeMove moveAntiClockwise(int[][] grid, SnakeMove snakeMove, int moves) {
+        // Not Vertical
+        if (snakeMove.hRow != snakeMove.tRow + 1) {
+            return null;
+        }
+        // unable to move
+        if (snakeMove.hCol + 1 >= n ||
+                grid[snakeMove.hRow][snakeMove.hCol + 1] == 1 ||
+                snakeMove.tCol + 1 >= n || grid[snakeMove.tRow][snakeMove.tCol + 1] == 1) {
+            return null;
+        }
+        SnakeMove counterClockP = new SnakeMove(snakeMove.hRow - 1, snakeMove.hCol + 1, snakeMove.tRow, snakeMove.tCol, moves + 1);
+        if (isValidMove(grid, counterClockP)) {
+            return counterClockP;
+        }
+        return null;
+    }
+
+    private SnakeMove moveClockwise(int[][] grid, SnakeMove snakeMove, int moves) {
+        // Not horizontal
+        // it will take clockwise turn only when the snake is in horizontal
+        if (snakeMove.hCol != snakeMove.tCol + 1) {
+            return null;
+        }
+
+        //Unable to move
+        if (snakeMove.hRow + 1 >= n ||
+                grid[snakeMove.hRow + 1][snakeMove.hCol] == 1 ||
+                snakeMove.tRow + 1 >= n ||
+                grid[snakeMove.tRow + 1][snakeMove.tCol] == 1) {
+            return null;
+        }
+        SnakeMove clockP = new SnakeMove(snakeMove.hRow + 1, snakeMove.hCol - 1, snakeMove.tRow, snakeMove.tCol, moves + 1);
+        // Cannot move back to same position in next position
+        if (isValidMove(grid, clockP)) {
+            return clockP;
+        }
+        return null;
+    }
+
+    private SnakeMove moveDown(int[][] grid, SnakeMove snakeMove, int moves) {
+        SnakeMove downP = new SnakeMove(snakeMove.hRow + 1,
+                snakeMove.hCol,
+                snakeMove.tRow + 1,
+                snakeMove.tCol,
+                moves + 1);
+        if (isValidMove(grid, downP)) {
+            return downP;
+        }
+        return null;
+    }
+
+    private SnakeMove moveRight(int[][] grid, SnakeMove snakeMove, int moves) {
+        SnakeMove rightP = new SnakeMove(snakeMove.hRow,
+                snakeMove.hCol + 1,
+                snakeMove.tRow,
+                snakeMove.tCol + 1,
+                moves + 1);
+        if (isValidMove(grid, rightP)) {
+            return rightP;
+        }
+        return null;
+    }
+
+    public boolean isValidMove(int[][] grid, SnakeMove snakeMove) {
+        if (snakeMove.hRow < 0 || snakeMove.hRow >= n
+                || snakeMove.hCol < 0 || snakeMove.hCol >= n
+                || snakeMove.tRow < 0 || snakeMove.tRow >= n
+                || snakeMove.tCol < 0 || snakeMove.tCol >= n) {
+            return false;
+        }
+        if (grid[snakeMove.hRow][snakeMove.hCol] == 1 || grid[snakeMove.tRow][snakeMove.tCol
+                ] == 1) {
+            return false;
+        }
+        return visited.add(snakeMove);
     }
 }
