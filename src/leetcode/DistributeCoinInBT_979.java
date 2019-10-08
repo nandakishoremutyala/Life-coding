@@ -32,7 +32,7 @@ public class DistributeCoinInBT_979 {
         if (root == null) return 0;
         int left = dfs(root.left);
         int right = dfs(root.right);
-        numSteps = Math.abs(left) + Math.abs(right);
+        numSteps += Math.abs(left) + Math.abs(right);
         return root.val - 1 + left + right;
     }
 }
