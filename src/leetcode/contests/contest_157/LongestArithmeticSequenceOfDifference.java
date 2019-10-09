@@ -51,7 +51,6 @@ public class LongestArithmeticSequenceOfDifference {
             }
             max=Math.max(max,map.get(arr[i]));
         }
-        System.out.println(map);
         return max;
     }
 }
