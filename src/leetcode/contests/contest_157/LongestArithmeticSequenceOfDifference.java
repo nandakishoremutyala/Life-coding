@@ -39,22 +39,19 @@ public class LongestArithmeticSequenceOfDifference {
     }
 
     public int longestSubsequence(int[] arr, int difference) {
-        int[] ones = new int[arr.length];
-        Arrays.fill(ones, 1);
-
+        // a[i]-a[j]=difference
+        // a[i]-difference=a[j]
+        Map<Integer,Integer> map=new HashMap<>();
         int max = 1;
-        for (int j = 1; j < arr.length; j++) {
-            int temp = j - 1;
-            while (temp >= 0) {
-                if (arr[j]-arr[temp]==difference) {
-                    ones[j] = Math.max(ones[temp] + 1, ones[j]);
-                    break;
-                }
-                temp--;
+        for (int i = 0; i <arr.length ; i++) {
+            if(map.containsKey(arr[i]-difference))
+                map.put(arr[i],map.get(arr[i]-difference)+1);
+            else{
+                map.put(arr[i],1);
             }
-            max = Math.max(ones[j], max);
+            max=Math.max(max,map.get(arr[i]));
         }
-        System.out.println(max);
+        System.out.println(map);
         return max;
     }
 }
