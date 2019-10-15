@@ -56,10 +56,10 @@ public class SimilarStringGroups {
         for (int i = 0; i < n; i++) {
             for (int j = i + 1; j < n; j++) {
                 if (uf.find(i) == uf.find(j)) continue;
-                String a = A[i];
-                String b = A[j];
-                System.out.println(a+"-"+b);
-                if (isSimilar(a, b)) uf.union(i, j);
+                String str1 = A[i];
+                String str2 = A[j];
+                System.out.println(str1+"-"+str2);
+                if (isSimilar(str1, str2)) uf.union(i, j);
             }
         }
         return uf.groups;
