@@ -1,4 +1,4 @@
-package graph;
+package graph.union_find;
 
 public class UFPathCompression {
     static Subset[] subsets;

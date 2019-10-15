@@ -1,4 +1,4 @@
-package graph;
+package graph.union_find;
 
 public class UF {
     static int[] parent;
