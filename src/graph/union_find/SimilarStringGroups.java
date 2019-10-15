@@ -58,6 +58,7 @@ public class SimilarStringGroups {
                 if (uf.find(i) == uf.find(j)) continue;
                 String a = A[i];
                 String b = A[j];
+                System.out.println(a+"-"+b);
                 if (isSimilar(a, b)) uf.union(i, j);
             }
         }
