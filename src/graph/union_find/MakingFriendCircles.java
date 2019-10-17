@@ -4,26 +4,21 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashSet;
-import java.util.Set;
-
 public class MakingFriendCircles {
     MakingFriendCircles makingFriendCircles;
 
     class FriendCircle {
-       // int students;
         int[] friends;
         int[] ranks;
         int circles;
 
         FriendCircle(int num) {
-            //this.students = num;
-            this.circles=num;
+            this.circles = num;
             this.friends = new int[num];
-            this.ranks=new int[num];
+            this.ranks = new int[num];
             for (int i = 0; i < num; i++) {
                 friends[i] = i;
-                ranks[i]=1;
+                ranks[i] = 1;
             }
         }
 
@@ -41,13 +36,14 @@ public class MakingFriendCircles {
 
             if (rootX != rootY) {
                 if (ranks[rootX] < ranks[rootY]) {
-                    ranks[rootY]+= ranks[rootX];
+                    friends[rootY] = rootX;
+                } else if (ranks[rootY] < ranks[rootX]) {
                     friends[rootX] = rootY;
                 } else {
-                    ranks[rootX]+= ranks[rootY];
-                    friends[rootY] = rootX;
+                    friends[rootX] = rootY;
+                    ranks[rootY] += ranks[rootY];
                 }
-                circles--;
+                this.circles--;
             }
         }
 
@@ -77,19 +73,14 @@ public class MakingFriendCircles {
     }
 
     public int findCircleNum(int[][] M) {
-        FriendCircle fc=new FriendCircle(M.length);
+        FriendCircle fc = new FriendCircle(M.length);
         for (int i = 0; i < M.length; i++) {
-            for (int j = 0; j <i ; j++) {
-                if(M[i][j]==1){
-                    int std1=i;
-                    int std2=j;
-                    fc.union(std1,std2);
-                    fc.circles--;
+            for (int j = 0; j < i; j++) {
+                if (M[i][j] == 1) {
+                    fc.union(i, j);
                 }
             }
         }
-
-        System.out.println(fc.friends);
         return fc.circles;
     }
 }
