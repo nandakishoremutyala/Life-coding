@@ -24,25 +24,38 @@ public class ConcatenatedWords {
     }
 
     public List<String> findAllConcatenatedWordsInADict(String[] words) {
-        List<String> result = new ArrayList<>();
-        Set<String> dictionary = new HashSet<>();
-        if (words.length == 1) {
-            result.add(words[0]);
-            return result;
+        List<String> ans = new ArrayList();
+        Set<String> dict = new HashSet<>();
+        if(words.length == 1)
+        {
+            return ans;
+        }
+        for(String word: words)
+        {
+
+            dict.add(word);
+
         }
 
-        for (String word : words) {
-            dictionary.add(word);
-        }
-
-        for (String word : words) {
-            dictionary.remove(word);
-            if (wordCanBeFormed(word, dictionary)) {
-                result.add(word);
+        for(String word : words)
+        {
+            int len = word.length();
+            if(len ==0 )
+            {
+                continue;
             }
-            dictionary.add(word);
+            else
+            {
+                dict.remove(word);
+                if(wordCanBeFormed(word, dict))
+                {
+                    ans.add(word);
+                }
+                dict.add(word);
+            }
         }
-        return result;
+
+        return ans;
     }
 
     private boolean wordCanBeFormed(String word, Set<String> dictionary) {
