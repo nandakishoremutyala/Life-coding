@@ -38,6 +38,7 @@ public class LongestIncreasingPathInMatrix {
 
     public int longestIncreasingPath(int[][] matrix) {
         int r = matrix.length;
+        if(r==0)return 0;
         int c = matrix[0].length;
         int[][] cache = new int[r][c];
         int max = Integer.MIN_VALUE;
