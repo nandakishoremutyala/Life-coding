@@ -19,6 +19,13 @@ public class KMostElement {
     }
 
     public Set<Integer> mostKFrequent(int[] in,int k){
+        PriorityQueue<Map.Entry<Integer,Integer>> pq=new PriorityQueue<>(2, (e1, e2) -> {
+            if(e1.getValue()>e2.getValue())
+                return -1;
+            else if(e1.getValue()<e2.getValue())
+                return 1;
+            else return 0;
+        });
         Map<Integer,Integer> map=new HashMap<>();
         Set<Integer> sets=new HashSet<>();
         for (int i=0;i<in.length;i++){
@@ -29,6 +36,11 @@ public class KMostElement {
             Map.Entry<Integer,Integer> e=it.next();
             if(e.getValue()==k)
                 sets.add(e.getKey());
+            pq.add(e);
+        }
+        System.out.println(pq);
+        for (int i = 0; i <k ; i++) {
+            sets.add(pq.peek().getKey());
         }
         return sets;
     }
