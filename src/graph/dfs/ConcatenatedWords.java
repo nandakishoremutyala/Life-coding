@@ -19,36 +19,27 @@ public class ConcatenatedWords {
 
     @Test
     public void firstTest() {
-        List<String> result = concatenatedWords.findAllConcatenatedWordsInADict(new String[]{"cat","cats","catsdogcats","dog","dogcatsdog","hippopotamuses","rat","ratcatdogcat"});
-        Assertions.assertEquals(3,result.size());
+        List<String> result = concatenatedWords.findAllConcatenatedWordsInADict(new String[]{"cat", "cats", "catsdogcats", "dog", "dogcatsdog", "hippopotamuses", "rat", "ratcatdogcat"});
+        Assertions.assertEquals(3, result.size());
     }
 
     public List<String> findAllConcatenatedWordsInADict(String[] words) {
         List<String> ans = new ArrayList();
         Set<String> dict = new HashSet<>();
-        if(words.length == 1)
-        {
+        if (words.length == 1) {
             return ans;
         }
-        for(String word: words)
-        {
-
+        for (String word : words) {
             dict.add(word);
-
         }
 
-        for(String word : words)
-        {
+        for (String word : words) {
             int len = word.length();
-            if(len ==0 )
-            {
+            if (len == 0) {
                 continue;
-            }
-            else
-            {
+            } else {
                 dict.remove(word);
-                if(wordCanBeFormed(word, dict))
-                {
+                if (wordCanBeFormed(word, dict)) {
                     ans.add(word);
                 }
                 dict.add(word);
@@ -61,11 +52,11 @@ public class ConcatenatedWords {
     private boolean wordCanBeFormed(String word, Set<String> dictionary) {
         boolean[] dp = new boolean[word.length() + 1];
         dp[0] = true;
-        for (int i = 1; i <=word.length() ; i++) {
-            for (int j = 0; j <i ; j++) {
-                String subString=word.substring(j,i);
-                if(dp[j] && dictionary.contains(subString)){
-                    dp[i]=true;
+        for (int i = 1; i <= word.length(); i++) {
+            for (int j = 0; j < i; j++) {
+                String subString = word.substring(j, i);
+                if (dp[j] && dictionary.contains(subString)) {
+                    dp[i] = true;
                     break;
                 }
             }
