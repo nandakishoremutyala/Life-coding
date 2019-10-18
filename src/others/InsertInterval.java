@@ -50,6 +50,33 @@ public class InsertInterval {
             System.out.println(data[0] + "-" + data[1]);
     }
 
+    @Test
+    public void fifthTest() {
+        int[][] input = new int[][]{{1, 5}};
+        int[] newInterval = new int[]{0, 0};
+        int[][] result = insertInterval.insert(input, newInterval);
+        for (int[] data : result)
+            System.out.println(data[0] + "-" + data[1]);
+    }
+
+    @Test
+    public void sixthTest() {
+        int[][] input = new int[][]{{1, 5}};
+        int[] newInterval = new int[]{1, 7};
+        int[][] result = insertInterval.insert(input, newInterval);
+        for (int[] data : result)
+            System.out.println(data[0] + "-" + data[1]);
+    }
+
+    @Test
+    public void seventhTest() {
+        int[][] input = new int[][]{{1, 5}};
+        int[] newInterval = new int[]{6, 8};
+        int[][] result = insertInterval.insert(input, newInterval);
+        for (int[] data : result)
+            System.out.println(data[0] + "-" + data[1]);
+    }
+
     public int[][] insert(int[][] intervals, int[] newInterval) {
         if (intervals.length == 0)
             return new int[][]{{newInterval[0], newInterval[1]}};
@@ -60,10 +87,14 @@ public class InsertInterval {
         for (int i = 0; i < intervals.length; i++) {
             int[] data = intervals[i];
             if (!inserted) {
-                if (data[1] >= newInterval[0]) {
+                if (data[1] >= newInterval[0] && newInterval[0] > data[0]) {
                     stack.push(data);
                     inserted = true;
                     mergeAndInsert(stack, newInterval);
+                } else if (data[1] >= newInterval[0] && newInterval[0] <= data[0]) {
+                    stack.push(newInterval);
+                    inserted = true;
+                    mergeAndInsert(stack, data);
                 } else {
                     mergeAndInsert(stack, data);
                 }
@@ -72,6 +103,8 @@ public class InsertInterval {
             }
         }
 
+        if (!inserted)
+            stack.push(newInterval);
         System.out.println(stack);
         int[][] result = new int[stack.size()][2];
         for (int i = stack.size() - 1; i >= 0; i--) {
