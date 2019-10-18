@@ -1,5 +1,6 @@
 package others;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -18,63 +19,45 @@ public class InsertInterval {
     public void firstTest() {
         int[][] input = new int[][]{{1, 3}, {6, 9}};
         int[] newInterval = new int[]{2, 5};
+        int[][] expectedOutput = new int[][]{{1, 5}, {6, 9}};
         int[][] result = insertInterval.insert(input, newInterval);
-        for (int[] data : result)
-            System.out.println(data[0] + "-" + data[1]);
+        Assertions.assertArrayEquals(expectedOutput, result);
     }
 
     @Test
     public void secondTest() {
         int[][] input = new int[][]{{1, 2}, {3, 5}, {6, 7}, {8, 10}, {12, 16}};
         int[] newInterval = new int[]{4, 8};
+        int[][] expectedOutput = new int[][]{{1, 2}, {3, 10}, {12, 16}};
         int[][] result = insertInterval.insert(input, newInterval);
-        for (int[] data : result)
-            System.out.println(data[0] + "-" + data[1]);
+        Assertions.assertArrayEquals(expectedOutput, result);
     }
 
     @Test
     public void thirdTest() {
         int[][] input = new int[][]{};
         int[] newInterval = new int[]{5, 7};
+        int[][] expectedOutput = new int[][]{{5, 7}};
         int[][] result = insertInterval.insert(input, newInterval);
-        for (int[] data : result)
-            System.out.println(data[0] + "-" + data[1]);
+        Assertions.assertArrayEquals(expectedOutput, result);
     }
 
     @Test
     public void fourthTest() {
         int[][] input = new int[][]{{1, 5}};
         int[] newInterval = new int[]{5, 7};
+        int[][] expectedOutput = new int[][]{{1, 7}};
         int[][] result = insertInterval.insert(input, newInterval);
-        for (int[] data : result)
-            System.out.println(data[0] + "-" + data[1]);
+        Assertions.assertArrayEquals(expectedOutput, result);
     }
 
     @Test
     public void fifthTest() {
         int[][] input = new int[][]{{1, 5}};
         int[] newInterval = new int[]{0, 0};
+        int[][] expectedOutput=new int[][]{{0,0},{1,5}};
         int[][] result = insertInterval.insert(input, newInterval);
-        for (int[] data : result)
-            System.out.println(data[0] + "-" + data[1]);
-    }
-
-    @Test
-    public void sixthTest() {
-        int[][] input = new int[][]{{1, 5}};
-        int[] newInterval = new int[]{1, 7};
-        int[][] result = insertInterval.insert(input, newInterval);
-        for (int[] data : result)
-            System.out.println(data[0] + "-" + data[1]);
-    }
-
-    @Test
-    public void seventhTest() {
-        int[][] input = new int[][]{{1, 5}};
-        int[] newInterval = new int[]{6, 8};
-        int[][] result = insertInterval.insert(input, newInterval);
-        for (int[] data : result)
-            System.out.println(data[0] + "-" + data[1]);
+        Assertions.assertArrayEquals(expectedOutput,result);
     }
 
     public int[][] insert(int[][] intervals, int[] newInterval) {
@@ -82,7 +65,6 @@ public class InsertInterval {
             return new int[][]{{newInterval[0], newInterval[1]}};
         if (newInterval.length == 0) return intervals;
         Deque<int[]> stack = new ArrayDeque<>();
-
         boolean inserted = false;
         for (int i = 0; i < intervals.length; i++) {
             int[] data = intervals[i];
@@ -105,7 +87,6 @@ public class InsertInterval {
 
         if (!inserted)
             stack.push(newInterval);
-        System.out.println(stack);
         int[][] result = new int[stack.size()][2];
         for (int i = stack.size() - 1; i >= 0; i--) {
             result[i] = stack.poll();
