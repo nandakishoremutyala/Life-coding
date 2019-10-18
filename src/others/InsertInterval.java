@@ -41,17 +41,26 @@ public class InsertInterval {
             System.out.println(data[0] + "-" + data[1]);
     }
 
+    @Test
+    public void fourthTest() {
+        int[][] input = new int[][]{{1, 5}};
+        int[] newInterval = new int[]{5, 7};
+        int[][] result = insertInterval.insert(input, newInterval);
+        for (int[] data : result)
+            System.out.println(data[0] + "-" + data[1]);
+    }
+
     public int[][] insert(int[][] intervals, int[] newInterval) {
         if (intervals.length == 0)
             return new int[][]{{newInterval[0], newInterval[1]}};
-        if(newInterval.length==0)return intervals;
+        if (newInterval.length == 0) return intervals;
         Deque<int[]> stack = new ArrayDeque<>();
 
         boolean inserted = false;
         for (int i = 0; i < intervals.length; i++) {
             int[] data = intervals[i];
             if (!inserted) {
-                if (data[1] > newInterval[0]) {
+                if (data[1] >= newInterval[0]) {
                     stack.push(data);
                     inserted = true;
                     mergeAndInsert(stack, newInterval);
