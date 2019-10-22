@@ -4,7 +4,8 @@ Solve one problem everyday.
 All of my daily problem solving lives in this repo. Some of the wrong 
 attempt is also here. If you follow this repo, make sure you run the code and try
 with test cases. 
-
+# Amazon Leadership interview details
+* https://interviewgenie.com/blog-1/category/Amazon+interviews
 ## Resources
 1. Cracking the coding interview book
 2. https://www.geeksforgeeks.org/
