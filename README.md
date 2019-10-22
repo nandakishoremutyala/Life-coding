@@ -7,32 +7,32 @@ with test cases.
 # Amazon Leadership interview details
 * https://interviewgenie.com/blog-1/category/Amazon+interviews
 ## Resources
-1. Cracking the coding interview book
-2. https://www.geeksforgeeks.org/
-3. https://www.interviewbit.com/practice/
-4. https://start.interviewing.io/dashboard/interviewee
-5. https://leetcode.com/
-6. https://www.coursera.org/
-7. https://code.google.com/codejam/kickstart/
-8. https://www.pramp.com/dashboard
-9. https://www.youtube.com/channel/UCWSYAntBbdd2SLYUqPIxo0w
-10. https://www.byte-by-byte.com/
-11. https://www.dailycodingproblem.com/
-12. https://coderbyte.com/
-13. https://www.interviewcake.com
-14. https://www.geeksforgeeks.org/must-do-coding-questions-for-companies-like-amazon-microsoft-adobe/
-15. https://www.programcreek.com/2012/11/top-10-algorithms-for-coding-interview/
+* Cracking the coding interview book
+* https://www.geeksforgeeks.org/
+* https://www.interviewbit.com/practice/
+* https://start.interviewing.io/dashboard/interviewee
+* https://leetcode.com/
+* https://www.coursera.org/
+* https://code.google.com/codejam/kickstart/
+* https://www.pramp.com/dashboard
+* https://www.youtube.com/channel/UCWSYAntBbdd2SLYUqPIxo0w
+* https://www.byte-by-byte.com/
+* https://www.dailycodingproblem.com/
+* https://coderbyte.com/
+* https://www.interviewcake.com
+* https://www.geeksforgeeks.org/must-do-coding-questions-for-companies-like-amazon-microsoft-adobe/
+* https://www.programcreek.com/2012/11/top-10-algorithms-for-coding-interview/
 ## Helper materials: 
 
 Tree:
     
-   1. Segment Tree: https://www.youtube.com/watch?v=Oq2E2yGadnU
-   2. AVL Tree: https://www.youtube.com/watch?v=-9sHvAnLN_w
+   * Segment Tree: https://www.youtube.com/watch?v=Oq2E2yGadnU
+   * AVL Tree: https://www.youtube.com/watch?v=-9sHvAnLN_w
    
 ## Understanding SSTable
 
-    1. https://www.igvita.com/2012/02/06/sstable-and-log-structured-storage-leveldb/
-    2. https://hackernoon.com/fundamentals-of-system-design-part-3-8da61773a631
+    * https://www.igvita.com/2012/02/06/sstable-and-log-structured-storage-leveldb/
+    * https://hackernoon.com/fundamentals-of-system-design-part-3-8da61773a631
    
 ## Java Code Beauty: 
 
@@ -106,6 +106,19 @@ HashMap<String,Long> map= (HashMap<String, Long>) Arrays.stream(arr).collect(Col
      list.sort(Comparator.comparingInt(v -> v.start));
      list.stream().forEach(interval -> {
                 System.out.println(interval.start+"->"+interval.end);
+      });
+
+# How to sort from largest to smallest
+
+      list.sort((i1, i2) -> {
+                 if (i2.start > i1.start) return 1;//we want next bigger element first
+                 else if (i1.start > i2.start) return -1;
+                 else return 0;
+     
+             });
+     
+      list.stream().forEach(interval -> {
+          System.out.println(interval.start + "->" + interval.end);
       });
 ```
 #### PriorityQueue with custom comparator
