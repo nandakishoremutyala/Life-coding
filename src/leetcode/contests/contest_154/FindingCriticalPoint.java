@@ -15,7 +15,7 @@ public class FindingCriticalPoint {
         HashSet<Integer>[] connections;
 
         /**
-         * Create a graph data structure
+         * Create a data_structure.graph data structure
          */
         Graph(int v) {
             this.v = v;

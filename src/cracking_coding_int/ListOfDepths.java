@@ -34,7 +34,7 @@ public class ListOfDepths {
             LinkedList<TreeNode> parents = current;
             current = new LinkedList<>();
 
-            // add all the nodes to a linkedlist
+            // add all the nodes to a data_structure.linkedlist
             // iterate all the childs of the list
             for (TreeNode parent : parents) {
                 // visit children

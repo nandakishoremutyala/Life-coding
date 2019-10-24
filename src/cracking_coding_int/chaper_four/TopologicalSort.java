@@ -1,6 +1,6 @@
 package cracking_coding_int.chaper_four;
 
-import graph.Graph;
+import data_structure.graph.Graph;
 
 import java.util.Iterator;
 import java.util.Stack;
@@ -19,7 +19,7 @@ public class TopologicalSort {
         g.addEdge(3, 1);
 
         System.out.println("Following is a Topological " +
-                "sort of the given graph");
+                "sort of the given data_structure.graph");
         topologicalSort(g, V);
     }
 

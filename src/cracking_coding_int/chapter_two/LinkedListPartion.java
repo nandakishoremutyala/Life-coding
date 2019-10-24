@@ -1,7 +1,7 @@
 package cracking_coding_int.chapter_two;
 
 /**
- * partition a linkedlist around a value x, such that all nodes less than x come before all nodes greater
+ * partition a data_structure.linkedlist around a value x, such that all nodes less than x come before all nodes greater
  * than or equal to x
  */
 public class LinkedListPartion {

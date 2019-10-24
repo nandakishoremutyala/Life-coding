@@ -27,7 +27,7 @@ public class StringDeletion {
         // we will run a breadth first search
         Queue<String> queue = new LinkedList<>();
         Set<String> queuedElements = new HashSet<>(); // it will help to avoid duplicates
-        // Look at the last line of graph above. we need avoid those.
+        // Look at the last line of data_structure.graph above. we need avoid those.
         queue.add(query);
         queuedElements.add(query);
         while (!queue.isEmpty()) {

@@ -14,7 +14,7 @@ public class AlienDictionary {
             }
         }
 
-        // function to add an edge to graph
+        // function to add an edge to data_structure.graph
         void addEdge(int startVertex, int endVertex) {
             adjacencyList[startVertex].add(endVertex);
         }

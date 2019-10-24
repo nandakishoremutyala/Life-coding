@@ -11,7 +11,7 @@
 02. Longest common subsequence
 03. Segment data_structure.tree: https://github.com/jakobkogler/Algorithm-DataStructures/blob/master/RangeQuery/SegmentTree.java
 04. Segement data_structure.tree for sum, min and any other implementation
-05. Partition of linkedlist
+05. Partition of data_structure.linkedlist
 06. checkbalance in BST
 07. validate bst
 08. Tree serialization and hashing
