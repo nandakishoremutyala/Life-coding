@@ -2,7 +2,7 @@ package leetcode.contests.contest_132;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import tree.TreeNode;
+import data_structure.trees.TreeNode;
 
 public class TreeRecoverFromPreOrder {
     TreeRecoverFromPreOrder recoverFromPreOrder;

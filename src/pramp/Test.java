@@ -78,18 +78,18 @@ public class Test {
         }
 
 
-        //  Given a binary search tree and a number, inserts a new node
-        //  with the given number in the correct place in the tree
+        //  Given a binary search data_structure.tree and a number, inserts a new node
+        //  with the given number in the correct place in the data_structure.tree
         void insert(int key) {
 
-            // 1. If the tree is empty, create the root
+            // 1. If the data_structure.tree is empty, create the root
             if (this.root == null) {
                 this.root = new Node(key);
                 return;
             }
 
             // 2) Otherwise, create a node with the key
-            //    and traverse down the tree to find where to
+            //    and traverse down the data_structure.tree to find where to
             //    to insert the new node
             Node currentNode = this.root;
             Node newNode = new Node(key);

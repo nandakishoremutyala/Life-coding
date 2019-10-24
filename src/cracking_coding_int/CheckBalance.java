@@ -1,6 +1,6 @@
 package cracking_coding_int;
 
-import tree.TreeNode;
+import data_structure.trees.TreeNode;
 
 public class CheckBalance {
     private static TreeNode root;

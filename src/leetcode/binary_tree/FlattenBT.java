@@ -4,7 +4,7 @@ import leetcode.TreeNode;
 
 public class FlattenBT {
     /**
-     * @param root: a TreeNode, the root of the binary tree
+     * @param root: a TreeNode, the root of the binary data_structure.tree
      * @return: nothing
      */
     public void flatten(TreeNode root) {

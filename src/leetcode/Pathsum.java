@@ -7,7 +7,7 @@ public class Pathsum {
     {
         int sum = 21;
 
-        /* Constructed binary tree is
+        /* Constructed binary data_structure.tree is
               10
              /  \
            8     2

@@ -1,4 +1,4 @@
-package tree;
+package data_structure.trees;
 
 public class IntervalTree {
     static class IntrvalTree {
@@ -87,7 +87,7 @@ public class IntervalTree {
     }
 
     public static IntrvalTree overlapSearch(IntrvalTree root, IntrvalTree intrvalTree) {
-        // Base Case, tree is empty
+        // Base Case, data_structure.tree is empty
         if (root == null) return null;
 
         // If given interval overlaps with root

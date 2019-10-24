@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class SerializeBT {
-    // Encodes a tree to a single string.
+    // Encodes a data_structure.tree to a single string.
     public String serialize(TreeNode root) {
         return rSerialize(root, "");
 
@@ -22,7 +22,7 @@ public class SerializeBT {
         return s;
     }
 
-    // Decodes your encoded data to tree.
+    // Decodes your encoded data to data_structure.tree.
     public TreeNode deserialize(String data) {
         String[] data_array = data.split(",");
         List<String> data_list = new LinkedList<String>(Arrays.asList(data_array));

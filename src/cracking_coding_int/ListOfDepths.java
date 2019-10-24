@@ -1,11 +1,10 @@
 package cracking_coding_int;
 
-import tree.TreeNode;
+import data_structure.trees.TreeNode;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
 public class ListOfDepths {
     private static TreeNode root;

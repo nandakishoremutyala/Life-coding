@@ -1,6 +1,6 @@
 package cracking_coding_int.chaper_four;
 
-import tree.TreeNode;
+import data_structure.trees.TreeNode;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

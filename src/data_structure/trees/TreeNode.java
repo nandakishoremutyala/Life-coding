@@ -1,4 +1,4 @@
-package tree;
+package data_structure.trees;
 
 public class TreeNode {
     public int val;

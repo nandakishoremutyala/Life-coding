@@ -3,7 +3,7 @@ import leetcode.TreeNode;
 import java.util.LinkedList;
 
 /***
- * Creating a linked list from the leaves of the binary tree
+ * Creating a linked list from the leaves of the binary data_structure.tree
  * Traverse from left to right.
  * */
 public class LinkedListFromLeavesOfBinaryTree {

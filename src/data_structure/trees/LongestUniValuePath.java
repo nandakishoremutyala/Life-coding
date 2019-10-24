@@ -1,4 +1,4 @@
-package tree;
+package data_structure.trees;
 
 public class LongestUniValuePath {
     int max=0;

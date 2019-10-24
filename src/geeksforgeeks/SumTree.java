@@ -46,8 +46,8 @@ public class SumTree {
         tree.root.right.right = new Node(2);
 
         if (tree.isSumTree(tree.root) != 0)
-            System.out.println("The given tree is a sum tree");
+            System.out.println("The given data_structure.tree is a sum data_structure.tree");
         else
-            System.out.println("The given tree is not a sum tree");
+            System.out.println("The given data_structure.tree is not a sum data_structure.tree");
     }
 }

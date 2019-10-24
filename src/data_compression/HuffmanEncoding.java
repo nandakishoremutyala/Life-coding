@@ -39,7 +39,7 @@ public class HuffmanEncoding {
         Node root = pq.peek();
         System.out.println("Root: " + root.frequency);
 
-        // traverse the Huffman tree and store the Huffman codes in a map
+        // traverse the Huffman data_structure.tree and store the Huffman codes in a map
         Map<Character, String> huffmanCode = new HashMap<>();
         encode(root, "", huffmanCode);
 

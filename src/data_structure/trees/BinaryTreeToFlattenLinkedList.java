@@ -1,4 +1,4 @@
-package tree;
+package data_structure.trees;
 import java.util.Stack;
 
 public class BinaryTreeToFlattenLinkedList {

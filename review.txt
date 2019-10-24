@@ -9,8 +9,8 @@
 
 01. Longest Increasing Subsequence----last Try: 03/2019
 02. Longest common subsequence
-03. Segment tree: https://github.com/jakobkogler/Algorithm-DataStructures/blob/master/RangeQuery/SegmentTree.java
-04. Segement tree for sum, min and any other implementation
+03. Segment data_structure.tree: https://github.com/jakobkogler/Algorithm-DataStructures/blob/master/RangeQuery/SegmentTree.java
+04. Segement data_structure.tree for sum, min and any other implementation
 05. Partition of linkedlist
 06. checkbalance in BST
 07. validate bst

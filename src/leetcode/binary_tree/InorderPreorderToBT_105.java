@@ -1,6 +1,6 @@
 package leetcode.binary_tree;
 
-import tree.TreeNode;
+import data_structure.trees.TreeNode;
 
 public class InorderPreorderToBT_105 {
     static int preIndex=0;

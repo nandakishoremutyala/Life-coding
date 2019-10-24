@@ -51,7 +51,7 @@ import java.util.Collections;
  * 532164
  * Hint towards an even better solution
  *
- * Can we make the process of finding the ith empty position even more efficient ? Think binary tree / segment tree ?
+ * Can we make the process of finding the ith empty position even more efficient ? Think binary data_structure.tree / segment data_structure.tree ?
  * Oh, by the way, this would be a nice time to read up on Segment Trees which are incredibly useful ( http://codeforces.com/blog/entry/3327 )
  * What if you knew how many elements are there in first half of the array, and the second half of the array ?
  *
@@ -60,7 +60,7 @@ import java.util.Collections;
  *
  * Here, we will explore how to efficiently answer the query of finding the ith empty space.
  *
- * The query can be solved using segment / interval tree.
+ * The query can be solved using segment / interval data_structure.tree.
  * The root contains the number of elements in [0, N].
  * Left node contains the number of elements in [0, N/2]
  * Right node contains the number of elements in [N/2 + 1, N]
@@ -70,8 +70,8 @@ import java.util.Collections;
  *
  * If
  *     N / 2 - X >= i, the position lies in the left part of array and we move down to the left node.
- *     N / 2 - X < i, we now look for i - (N / 2 - X) th position in the right part of the array and move to the right node in the tree.
- * This is a fairly standard use of the segment tree.
+ *     N / 2 - X < i, we now look for i - (N / 2 - X) th position in the right part of the array and move to the right node in the data_structure.tree.
+ * This is a fairly standard use of the segment data_structure.tree.
  * */
 public class OrderOfPeoplesHts {
     public class Solution {

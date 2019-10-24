@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class BinaryIndexTree {
 
-    // Max tree size
+    // Max data_structure.tree size
     final static int MAX = 1000;
 
     static int BITree[] = new int[MAX];
@@ -42,7 +42,7 @@ public class BinaryIndexTree {
     // Updates a node in Binary Index Tree (BITree)
     // at given index in BITree. The given value
     // 'val' is added to BITree[i] and all of
-    // its ancestors in tree.
+    // its ancestors in data_structure.tree.
     public static void updateBIT(int n, int index,
                                  int val) {
         // index in BITree[] is 1 more than
@@ -60,7 +60,7 @@ public class BinaryIndexTree {
         }
     }
 
-    /* Function to construct fenwick tree
+    /* Function to construct fenwick data_structure.tree
     from given array.*/
     void constructBITree(int arr[], int n) {
         // Initialize BITree[] as 0
@@ -80,7 +80,7 @@ public class BinaryIndexTree {
         int n = freq.length;
         BinaryIndexTree tree = new BinaryIndexTree();
 
-        // Build fenwick tree from given array
+        // Build fenwick data_structure.tree from given array
         tree.constructBITree(freq, n);
         Arrays.stream(BITree).forEach(data-> System.out.println(data));
 

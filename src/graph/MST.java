@@ -79,7 +79,7 @@ public class MST {
             int xroot = find(subsets, x);
             int yroot = find(subsets, y);
 
-            // Attach smaller rank tree under root of high rank tree
+            // Attach smaller rank data_structure.tree under root of high rank data_structure.tree
             // (Union by Rank)
             if (subsets[xroot].rank < subsets[yroot].rank)
                 subsets[xroot].parent = yroot;

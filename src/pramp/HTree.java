@@ -23,11 +23,11 @@ public class HTree {
         // at each stage, the length of segments decreases by a factor of √2
         double newLength = length / Math.sqrt(2);
 
-        // decrement depth by 1 and draw an H-tree
+        // decrement depth by 1 and draw an H-data_structure.tree
         //at each of the tips of the current ‘H’
-        drawHTree(x0, y0, newLength, depth - 1);     // lower left  H-tree
-        drawHTree(x0, y1, newLength, depth - 1);    // upper left  H-tree
-        drawHTree(x1, y0, newLength, depth - 1);   // lower right H-tree
+        drawHTree(x0, y0, newLength, depth - 1);     // lower left  H-data_structure.tree
+        drawHTree(x0, y1, newLength, depth - 1);    // upper left  H-data_structure.tree
+        drawHTree(x1, y0, newLength, depth - 1);   // lower right H-data_structure.tree
         drawHTree(x1, y1, newLength, depth - 1);
     }
 }

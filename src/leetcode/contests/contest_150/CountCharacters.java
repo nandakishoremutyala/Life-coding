@@ -4,8 +4,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -20,7 +18,7 @@ public class CountCharacters {
 
     @Test
     public void firstTest() {
-        String[] arr = new String[]{"cat", "bt", "hat", "tree"};
+        String[] arr = new String[]{"cat", "bt", "hat", "data_structure/tree"};
         String chars = "atach";
         int len = countCharacters.countCharacters(arr, chars);
         Assertions.assertEquals(6, len);
