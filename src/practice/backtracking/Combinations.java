@@ -36,6 +36,5 @@ public class Combinations {
                 list.remove(list.size() - 1);
             }
         }
-
     }
 }

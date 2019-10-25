@@ -125,3 +125,9 @@ HashMap<String,Long> map= (HashMap<String, Long>) Arrays.stream(arr).collect(Col
 ```$xslt
  PriorityQueue<ListNode> pq = new PriorityQueue<>(Comparator.comparing(node -> node.val));
 ```           
+
+#### Best Way to understand backtracking
+* https://www.youtube.com/watch?v=78t_yHuGg-0
+* https://www.youtube.com/watch?v=5v6zdfkImms
+* https://www.youtube.com/watch?v=78t_yHuGg-0
+* https://www.youtube.com/watch?v=HvGkzDT2ffI&t=1492s
