@@ -11,12 +11,14 @@ public class MasterPrinter {
     }
     public static void printArray(int[] arr){
         for (int i = 0; i < arr.length; i++) {
-            System.out.println(arr[i]);
+            System.out.print(arr[i]);
         }
+
     }
 
     public static void printList(List<?> list){
+        System.out.println("");
         for (Object o:list)
-            System.out.println(o.toString());
+            System.out.print(o.toString());
     }
 }
