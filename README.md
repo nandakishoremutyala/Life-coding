@@ -29,6 +29,9 @@ Tree:
    * Segment Tree: https://www.youtube.com/watch?v=Oq2E2yGadnU
    * AVL Tree: https://www.youtube.com/watch?v=-9sHvAnLN_w
    
+## Dynamic Programming   
+* Understanding Longest common subsequence: https://www.youtube.com/watch?v=43P0xZp3FU4
+   
 ## Understanding SSTable
 
     * https://www.igvita.com/2012/02/06/sstable-and-log-structured-storage-leveldb/
