@@ -7,10 +7,8 @@ import java.util.Set;
 
 public class MostCommonWord {
     public static void main(String[] args) {
-
-        MostCommonWord mostCommonWord=new MostCommonWord();
-
-        String result=mostCommonWord.mostCommonWord("a, a, a, a, b,b,b,c, c",new String[]{"a"});
+        MostCommonWord mostCommonWord = new MostCommonWord();
+        String result = mostCommonWord.mostCommonWord("a, a, a, a, b,b,b,c, c", new String[]{"a"});
         System.out.println(result);
     }
 
@@ -26,7 +24,6 @@ public class MostCommonWord {
             if (!s.isEmpty() && !ban.contains(s.toLowerCase()))
                 counter.compute(s, (k, v) -> v == null ? 1 : v + 1);
         }
-
         int max = 0;
         String maxString = "";
         for (Map.Entry<String, Integer> e : counter.entrySet()) {
@@ -36,6 +33,5 @@ public class MostCommonWord {
             }
         }
         return maxString;
-
     }
 }
