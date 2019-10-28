@@ -134,3 +134,6 @@ HashMap<String,Long> map= (HashMap<String, Long>) Arrays.stream(arr).collect(Col
 * https://www.youtube.com/watch?v=5v6zdfkImms
 * https://www.youtube.com/watch?v=78t_yHuGg-0
 * https://www.youtube.com/watch?v=HvGkzDT2ffI&t=1492s
+
+#### Best way of understanding Huffman Encoding
+* https://www.youtube.com/watch?v=ikswC-irwY8&list=PLnfg8b9vdpLn9exZweTJx44CII1bYczuk&index=42
