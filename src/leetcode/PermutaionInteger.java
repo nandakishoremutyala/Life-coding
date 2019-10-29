@@ -6,7 +6,7 @@ public class PermutaionInteger {
     public static void main(String[] args){
         String in = "DID";
         numPermsDISequence(in);
-        //validPermute(in,0,in.length()-1);
+        validPermute(in,0,in.length()-1);
     }
 
     public static int numPermsDISequence(String S) {
