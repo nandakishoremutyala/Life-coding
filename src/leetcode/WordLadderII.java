@@ -5,6 +5,15 @@ import others.MasterPrinter;
 import java.util.*;
 
 public class WordLadderII {
+    /**
+     *
+     * hit-> hot
+     * hot-> lot, dot
+     * lot-> log
+     * log-> cog
+     * dot->dog
+     * dog->cog
+     * */
     public static void main(String[] args) {
         WordLadderII wordLadderII = new WordLadderII();
         List<List<String>> result = wordLadderII.findLadders("hit", "cog", Arrays.asList("hot", "dot", "dog", "lot", "log", "cog"));
