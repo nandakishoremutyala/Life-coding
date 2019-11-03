@@ -1,7 +1,5 @@
 package data_structure.linkedlist;
 
-import java.util.List;
-
 public class SwapPairs {
 
     public static void main(String[] args) {
@@ -20,11 +18,8 @@ public class SwapPairs {
         while (current.next != null && current.next.next != null) {
             ListNode first = current.next;
             ListNode second = current.next.next;
-
             first.next = second.next;
-
             current.next = second;
-
             current.next.next = first;
             current = current.next.next;
         }
