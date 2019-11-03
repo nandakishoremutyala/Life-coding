@@ -5,14 +5,6 @@ import java.util.Map;
 
 public class ZeroSumConsecutiveNode {
     public static void main(String[] args) {
-        /*ListNode head = new ListNode(1);
-        head.next = new ListNode(2);
-        head.next.next = new ListNode(-3);
-        head.next.next.next = new ListNode(3);
-        head.next.next.next.next = new ListNode(1);
-        ZeroSumConsecutiveNode zeroSumConsecutiveNode = new ZeroSumConsecutiveNode();
-        zeroSumConsecutiveNode.removeZeroSumSublists(head);*/
-
         ListNode head = new ListNode(1);
         head.next = new ListNode(2);
         head.next.next = new ListNode(3);
@@ -23,25 +15,23 @@ public class ZeroSumConsecutiveNode {
     }
 
     public ListNode removeZeroSumSublists(ListNode head) {
-        ListNode dummy = new ListNode(0);
-        ListNode cur = dummy;
+        ListNode dummy = new ListNode(0), cur = dummy;
         dummy.next = head;
-
-        Map<Integer, ListNode> map = new HashMap<>();
-        int sum = 0;
+        int prefix = 0;
+        Map<Integer, ListNode> m = new HashMap<>();
         while (cur != null) {
-            sum += cur.val;
-            if (map.containsKey(sum)) {
-                cur = map.get(sum).next;
-                int key = sum + cur.val;
-                while (key != sum) {
-                    map.remove(key);
+            prefix += cur.val;
+            if (m.containsKey(prefix)) {
+                cur = m.get(prefix).next;
+                int p = prefix + cur.val;
+                while (p != prefix) {
+                    m.remove(p);
                     cur = cur.next;
-                    key += cur.val;
+                    p += cur.val;
                 }
-                map.get(sum).next = cur.next;
+                m.get(prefix).next = cur.next;
             } else {
-                map.put(sum, cur);
+                m.put(prefix, cur);
             }
             cur = cur.next;
         }
