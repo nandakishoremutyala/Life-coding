@@ -9,23 +9,17 @@ public class MinCostToConnectSticks {
         System.out.println(minCostToConnectSticks.minCost(new int[]{1, 8, 3, 5}));
     }
 
-    public int minCost(int[] input) {
+    public int minCost(int[] sticks) {
         PriorityQueue<Integer> pq = new PriorityQueue<>();
-        for (int i : input)
-            pq.add(i);
-
-        int sum = 0;
-        int cost = 0;
-        while (!pq.isEmpty()) {
-            int first = pq.poll();
-            int second = 0;
-            if (!pq.isEmpty())
-                second = pq.poll();
-            sum = first + second;
-            cost += sum;
-            if (!pq.isEmpty())
-                pq.add(sum);
+        for (int s : sticks) {
+            pq.offer(s);
         }
-        return cost;
+        int sum = 0;
+        while (pq.size() > 1) {
+            int two = pq.poll() + pq.poll();
+            sum += two;
+            pq.offer(two);
+        }
+        return sum;
     }
 }
