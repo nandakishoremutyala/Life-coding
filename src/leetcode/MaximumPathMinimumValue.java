@@ -49,5 +49,4 @@ public class MaximumPathMinimumValue {
             return false;
         return true;
     }
-
 }
