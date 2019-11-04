@@ -54,20 +54,20 @@ public class MaximumProfitJobScheduling {
             maxTask = Math.max(maxTask, t.end);
             map.compute(t.end, (k, v) -> v == null ? new ArrayList<Task>() : v).add(t);
         }
-        int[] p = new int[maxTask + 1];
+        int[] cache = new int[maxTask + 1];
 
         int maxProfit = 0;
-        for (int i = 1; i < p.length; i++) {
+        for (int i = 1; i < cache.length; i++) {
             List<Task> tList = map.get(i);
             if (tList == null)
-                p[i] = p[i - 1];
+                cache[i] = cache[i - 1];
             else {
-                p[i] = p[i - 1];
+                cache[i] = cache[i - 1];
                 for (Task t : tList) {
-                    p[i] = Math.max(p[i], t.profit + p[t.start]);
+                    cache[i] = Math.max(cache[i], t.profit + cache[t.start]);
                 }
             }
-            maxProfit = Math.max(maxProfit, p[i]);
+            maxProfit = Math.max(maxProfit, cache[i]);
         }
         return maxProfit;
     }
