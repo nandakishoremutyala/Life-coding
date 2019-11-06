@@ -11,14 +11,9 @@ public class SingleNumberIII {
         for (int val:nums)
             diff^=val;
         System.out.println("xor of two numbers: "+diff);
-
         diff&=-diff;
-
         System.out.println(diff);
-
-
         int[] res=new int[2];
-
         for (int val:nums){
             if((val&diff)==0)
                 res[0]^=val;

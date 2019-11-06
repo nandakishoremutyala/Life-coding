@@ -137,3 +137,8 @@ HashMap<String,Long> map= (HashMap<String, Long>) Arrays.stream(arr).collect(Col
 
 #### Best way of understanding Huffman Encoding
 * https://www.youtube.com/watch?v=ikswC-irwY8&list=PLnfg8b9vdpLn9exZweTJx44CII1bYczuk&index=42
+
+#### Bit manipulation 
+* ```x &= -x```  will give you the last set bit. 
+
+* XOR of same two number is 0 
