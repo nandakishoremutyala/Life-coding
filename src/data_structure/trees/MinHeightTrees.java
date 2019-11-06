@@ -43,10 +43,11 @@ public class MinHeightTrees {
                 for (int j = 0; j < graph[cur].size(); j++) {
                     int next = graph[cur].get(j);
                     if (degree[next] == 0) continue;
-                    if (degree[next] == 2) {
+                    degree[next]--;
+                    if (degree[next] == 1) {
                         myQueue.offer(next);
                     }
-                    degree[next]--;
+                    //degree[next]--;
                 }
             }
         }
