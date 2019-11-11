@@ -1,18 +1,34 @@
 package data_structure.graph.dfs;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.HashMap;
-import java.util.Stack;
+import java.util.*;
 
 public class LongestWordInDictionary {
     public static void main(String[] args) {
         LongestWordInDictionary longestWordInDictionary = new LongestWordInDictionary();
-        String res = longestWordInDictionary.longestWord(new String[]
+        String res = longestWordInDictionary.longestWord1(new String[]
                 {"a", "banana", "app", "appl", "ap", "apply", "apple"});
         System.out.println(res);
     }
 
+    public String longestWord1(String[] words) {
+        Set<String> wordset = new HashSet();
+        for (String word: words) wordset.add(word);
+        Arrays.sort(words, (a, b) -> a.length() == b.length()
+                ? a.compareTo(b) : b.length() - a.length());
+
+        for (String word: words) {
+            boolean good = true;
+            for (int k = 1; k < word.length(); ++k) {
+                if (!wordset.contains(word.substring(0, k))) {
+                    good = false;
+                    break;
+                }
+            }
+            if (good) return word;
+        }
+
+        return "";
+    }
     public String longestWord(String[] words) {
         Trie trie = new Trie();
         int index = 0;
@@ -58,6 +74,7 @@ public class LongestWordInDictionary {
             while (!stack.empty()) {
                 Node node = stack.pop();
                 if (node.end > 0 || node == root) {
+                    System.out.println(node.c);
                     if (node != root) {
                         String word = words[node.end - 1];
                        // System.out.println(word);
