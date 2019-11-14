@@ -18,7 +18,6 @@ public class AverageOfLevelsInBT {
             Double average = e.getValue().stream().mapToInt(val -> val).average().orElse(0.0);
             result.add(average);
         }
-
         return result;
     }
 
