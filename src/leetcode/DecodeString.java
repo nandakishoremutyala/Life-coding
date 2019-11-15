@@ -15,7 +15,6 @@ public class DecodeString {
         if (s == null || s.length() == 0) return "";
         Stack<Integer> counts = new Stack<>();
         Stack<StringBuilder> values = new Stack<>();
-
         values.push(new StringBuilder());
         int num = 0;
         for (int i = 0; i < s.length(); i++) {
@@ -23,7 +22,6 @@ public class DecodeString {
             // computing the numbser value
             if (ch >= '0' && ch <= '9')
                 num = num * 10 + (ch - '0');
-
                 // when parenthesis starts
             else if (ch == '[') {
                 values.push(new StringBuilder());
@@ -44,9 +42,7 @@ public class DecodeString {
             } else {
                 values.peek().append(ch);
             }
-
         }
         return values.pop().toString();
     }
-
 }
