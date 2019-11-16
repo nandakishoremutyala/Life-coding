@@ -142,3 +142,8 @@ HashMap<String,Long> map= (HashMap<String, Long>) Arrays.stream(arr).collect(Col
 * ```x &= -x```  will give you the last set bit. 
 
 * XOR of same two number is 0 
+
+### Shortcut code snippet
+* If you need to assign value to a variable based on comparison of others two: follow this
+``` a = b == c ? 1 : 0```
+means if b and c are equal assign a=1 or a=0
