@@ -13,7 +13,7 @@ public class WordBreak {
     }
 
     public boolean wordBreak(String s, List<String> wordDict) {
-        Set<String> dict = new HashSet<String>(wordDict);
+        Set<String> dict = new HashSet<>(wordDict);
         Queue<Integer> queue = new LinkedList<>();
         queue.add(0);
         int[] visited = new int[s.length()];
