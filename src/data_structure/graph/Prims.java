@@ -43,38 +43,38 @@ public class Prims {
         ArrayList<Edge> mst = findMst(e);
 
         System.out.println("MST: ");
-        for(Edge edge:mst){
-            System.out.println(edge.from+" - "+edge.to+" : "+edge.weight);
+        for (Edge edge : mst) {
+            System.out.println(edge.from + " - " + edge.to + " : " + edge.weight);
         }
     }
 
-    private static ArrayList<Edge> findMst(ArrayList<ArrayList<Edge>> G) {
-        if(G.isEmpty())throw new NullPointerException("The Graph is empty");
+    private static ArrayList<Edge> findMst(ArrayList<ArrayList<Edge>> graph) {
+        if (graph.isEmpty()) throw new NullPointerException("The Graph is empty");
 
         ArrayList<Edge> mst = new ArrayList<>();
         PriorityQueue<Edge> pq = new PriorityQueue<>((Object o1, Object o2) -> {
-            Edge first = (Edge)o1;
-            Edge second = (Edge)o2;
+            Edge first = (Edge) o1;
+            Edge second = (Edge) o2;
 
-            if(first.weight<second.weight)return -1;
-            else if(first.weight>second.weight)return 1;
+            if (first.weight < second.weight) return -1;
+            else if (first.weight > second.weight) return 1;
             else return 0;
         });
 
-        for(Edge e:G.get(0)){
+        for (Edge e : graph.get(0)) {
             pq.add(e);
         }
 
-        boolean[] marked = new boolean[G.size()];
+        boolean[] marked = new boolean[graph.size()];
         marked[0] = true;
-        while(!pq.isEmpty()){
+        while (!pq.isEmpty()) {
             Edge e = pq.peek();
 
             pq.poll();
-            if(marked[e.from] && marked[e.to])continue;
+            if (marked[e.from] && marked[e.to]) continue;
             marked[e.from] = true;
-            for(Edge edge:G.get(e.to)){
-                if(!marked[edge.to]){
+            for (Edge edge : graph.get(e.to)) {
+                if (!marked[edge.to]) {
                     pq.add(edge);
                 }
             }
@@ -85,21 +85,18 @@ public class Prims {
     }
 
     private static ArrayList<ArrayList<Edge>> createGraph(Edge[] edges) {
-        ArrayList<ArrayList<Edge>> G = new ArrayList<>();
-        int length = edges.length*2;
-        for(int i=0;i<length;++i){
-            G.add(new ArrayList<>());
+        ArrayList<ArrayList<Edge>> Graph = new ArrayList<>();
+        int length = edges.length * 2;
+        for (int i = 0; i < length; ++i) {
+            Graph.add(new ArrayList<>());
         }
 
-        for(Edge e:edges){
+        for (Edge e : edges) {
             Edge other = new Edge(e.to, e.from, e.weight);
-            G.get(e.from).add(e);
-            G.get(e.to).add(other);
-            System.out.println("Added edge ["+e.from+", "+e.to+" : "+e.weight+"] "+"["+e.to+", "+e.from+" : "+e.weight+"]");
+            Graph.get(e.from).add(e);
+            Graph.get(e.to).add(other);
+            System.out.println("Added edge [" + e.from + ", " + e.to + " : " + e.weight + "] " + "[" + e.to + ", " + e.from + " : " + e.weight + "]");
         }
-
-        return G;
-
-
+        return Graph;
     }
 }
