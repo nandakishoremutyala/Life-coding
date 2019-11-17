@@ -29,7 +29,6 @@ public class UF {
             int xRoot=find(parent,x);
             int yRoot=find(parent,y);
             parent[xRoot]=yRoot;
-
         }
 
         class Edge {

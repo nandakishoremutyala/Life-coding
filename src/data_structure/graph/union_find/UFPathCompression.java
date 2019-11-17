@@ -2,7 +2,6 @@ package data_structure.graph.union_find;
 
 public class UFPathCompression {
     static Subset[] subsets;
-
     static class Graph {
         int V, E;
         Edge[] edge;
@@ -32,11 +31,13 @@ public class UFPathCompression {
         private void union(int src, int dest) {
             int sRoot = find(subsets, src);
             int dRoot = find(subsets, dest);
+            // add biggest ranked node to the smallest rank node
             if (subsets[sRoot].rank < subsets[dRoot].rank) {
                 subsets[dRoot].parent = sRoot;
             } else if (subsets[dRoot].rank < subsets[sRoot].rank) {
                 subsets[sRoot].parent = dRoot;
             } else {
+                // add any node to other and update the rank
                 subsets[sRoot].parent = dRoot;
                 subsets[dRoot].rank++;
             }
@@ -54,7 +55,6 @@ public class UFPathCompression {
         int dest;
 
         Edge() {
-
         }
     }
 
@@ -69,8 +69,6 @@ public class UFPathCompression {
         | \
         | \
         1-----2 */
-
-
         int V = 3, E = 3;
         Graph graph = new Graph(V, E);
 
