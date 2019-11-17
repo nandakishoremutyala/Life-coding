@@ -35,9 +35,7 @@ public class IntervalTree {
     }
 
     public static boolean doOverlap(ITNode node1, ITNode node2) {
-        if (node1.low < node2.high && node2.low < node1.high)
-            return true;
-        return false;
+        return node1.low < node2.high && node2.low < node1.high;
     }
 
     public static ITNode overlapSearch(ITNode root, ITNode search) {
@@ -49,25 +47,24 @@ public class IntervalTree {
         if (root.left != null && root.left.max > search.low)
             return overlapSearch(root.left, search);
         return overlapSearch(root.right, search);
-
     }
 
     public static void main(String[] args) {
         ITNode root = null;
-        int[][] data = new int[][]{{15, 20}, {10, 30}, {17, 19},
-                {5, 20}, {12, 15}, {30, 40}};
-        for (int i = 0; i < data.length; i++) {
-            int low = data[i][0];
-            int high = data[i][1];
+        int[][] data = new int[][]{
+                {15, 20}, {10, 30}, {17, 19},
+                {5, 20}, {12, 15}, {30, 40}
+        };
+        for (int[] datum : data) {
+            int low = datum[0];
+            int high = datum[1];
             ITNode node = new ITNode(low, high);
             root = insert(root, node);
         }
-
         inOrder(root);
-
-        ITNode search=new ITNode(6,7);
-        ITNode result=overlapSearch(root,search);
-        System.out.println("Low: "+result.low+" High: "+result.high);
+        ITNode search = new ITNode(6, 7);
+        ITNode result = overlapSearch(root, search);
+        System.out.println("Low: " + result.low + " High: " + result.high);
 
     }
 }
