@@ -1,6 +1,4 @@
 package leetcode.contests.contest_152;
-
-import org.hamcrest.collection.IsIterableContainingInOrder;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
