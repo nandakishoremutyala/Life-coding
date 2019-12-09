@@ -24,7 +24,7 @@ public class SubtractTheProductAndSumOfDigitsOfAnInteger {
     }
     public int subtractProductAndSum(int n) {
         int sum=0;
-        Long product=1L;
+        int product=1;
         while(n>=10){
             sum+=n%10;
             product*=n%10;
@@ -32,6 +32,6 @@ public class SubtractTheProductAndSumOfDigitsOfAnInteger {
         }
         sum+=n;
         product*=n;
-        return (int) (product-sum);
+        return (product-sum);
     }
 }
