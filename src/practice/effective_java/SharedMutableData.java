@@ -6,8 +6,7 @@ public class SharedMutableData {
     protected static volatile boolean stopRequested;
 
     public static void main(String[] args) throws InterruptedException {
-        Runnable target;
-        Thread bakcground = new Thread(() -> {
+        Thread background = new Thread(() -> {
             int i = 0;
             while (!stopRequested()) {
                 i++;
@@ -15,7 +14,7 @@ public class SharedMutableData {
             }
             System.out.println("From internal thread");
         });
-        bakcground.start();
+        background.start();
         TimeUnit.SECONDS.sleep(1);
         stopRequest();
         System.out.println("DONE");
