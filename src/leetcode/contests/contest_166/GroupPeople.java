@@ -1,5 +1,6 @@
 package leetcode.contests.contest_166;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import others.MasterPrinter;
@@ -18,7 +19,7 @@ public class GroupPeople {
     public void whenTwoGroupHasMaxPeople() {
         int[] input = new int[]{3, 3, 3, 3, 3, 1, 3};
         List<List<Integer>> result = groupPeople.groupThePeople(input);
-        MasterPrinter.printList(result);
+        Assertions.assertEquals(3,result.size());
     }
 
     public List<List<Integer>> groupThePeople(int[] groupSizes) {
@@ -32,10 +33,10 @@ public class GroupPeople {
                 if(data.size()==val){
                     result.add(data);
                     map.remove(val);
-                    map.compute(val,(k,v)->v==null?new ArrayList<Integer>():v).add(i);
+                    map.compute(val,(k,v)->v==null?new ArrayList<>():v).add(i);
                 }else data.add(i);
             }else{
-                map.compute(val,(k,v)->v==null?new ArrayList<Integer>():v).add(i);
+                map.compute(val,(k,v)->v==null?new ArrayList<>():v).add(i);
             }
         }
         for(Map.Entry<Integer,List<Integer>> entry:map.entrySet()){
