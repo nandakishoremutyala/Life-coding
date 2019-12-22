@@ -71,14 +71,12 @@ public class DivideArrayInSetsOfKConsecutiveNumber {
         for (int val : nums) {
             insert(data, val, k);
         }
-
         System.out.println(data);
         for (LinkedList list : data) {
             MasterPrinter.printList(list);
             if (list.size() != k) return false;
         }
         return true;
-
     }
 
 
