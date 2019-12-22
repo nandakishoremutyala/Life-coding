@@ -63,6 +63,7 @@ public class DivideArrayInSetsOfKConsecutiveNumber {
 
     public boolean isPossibleDivide(int[] nums, int k) {
         if (nums.length % k != 0) return false;
+        Arrays.sort(nums);
         LinkedList<Integer>[] data = new LinkedList[nums.length / k];
         for (int i = 0; i < data.length; i++) {
             data[i] = new LinkedList<>();
