@@ -1,11 +1,13 @@
 package leetcode.contests.contest_169;
 
 import leetcode.TreeNode;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import others.MasterPrinter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -25,7 +27,7 @@ public class AllElementsInTwoBST {
         root2.left=new TreeNode(0);
         root2.right=new TreeNode(3);
         List<Integer> res= allElementsInTwoBST.getAllElements(root1,root2);
-        MasterPrinter.printList(res);
+        Assertions.assertEquals(res, Arrays.asList(0,1,1,2,3,4));
     }
 
     @Test
@@ -35,7 +37,7 @@ public class AllElementsInTwoBST {
         root1.right=new TreeNode(10);
         TreeNode root2=null;
         List<Integer> res= allElementsInTwoBST.getAllElements(root1,root2);
-        MasterPrinter.printList(res);
+        Assertions.assertEquals(Arrays.asList(-10,0,10),res);
     }
 
     public List<Integer> getAllElements(TreeNode root1, TreeNode root2) {
