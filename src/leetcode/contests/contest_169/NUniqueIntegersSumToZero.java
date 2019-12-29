@@ -1,11 +1,12 @@
 package leetcode.contests.contest_169;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import others.MasterPrinter;
 
 public class NUniqueIntegersSumToZero {
-    NUniqueIntegersSumToZero nUniqueIntegersSumToZero;
+    private NUniqueIntegersSumToZero nUniqueIntegersSumToZero;
 
     @BeforeEach
     public void init() {
@@ -14,18 +15,27 @@ public class NUniqueIntegersSumToZero {
 
     @Test
     public void firstTest() {
-        int[] result = nUniqueIntegersSumToZero.sumZero(5);
-        MasterPrinter.printArray(result);
+        int[] expected = new int[]{0, 2, -2, 1, -1};
+        int[] actualResult = nUniqueIntegersSumToZero.sumZero(5);
+        MasterPrinter.printArray(actualResult);
+        Assertions.assertArrayEquals(actualResult, expected);
     }
+
     @Test
     public void secondTest() {
-        int[] result = nUniqueIntegersSumToZero.sumZero(3);
-        MasterPrinter.printArray(result);
+        int[] expected = new int[]{0, 1, -1};
+        int[] actualResult = nUniqueIntegersSumToZero.sumZero(3);
+        MasterPrinter.printArray(actualResult);
+        Assertions.assertArrayEquals(actualResult, expected);
     }
+
     @Test
     public void thirdTest() {
-        int[] result = nUniqueIntegersSumToZero.sumZero(1);
-        MasterPrinter.printArray(result);
+        int[] expected = new int[]{0};
+        int[] actualResult = nUniqueIntegersSumToZero.sumZero(1);
+        MasterPrinter.printArray(actualResult);
+        MasterPrinter.printArray(actualResult);
+        Assertions.assertArrayEquals(actualResult, expected);
     }
 
     public int[] sumZero(int n) {
@@ -34,8 +44,8 @@ public class NUniqueIntegersSumToZero {
             result[0] = 0;
             return result;
         }
+        int x = n / 2;
         if (n % 2 == 0) {
-            int x = n / 2;
             int i = 0;
             while (i < n) {
                 result[i] = x;
@@ -44,7 +54,6 @@ public class NUniqueIntegersSumToZero {
                 x--;
             }
         } else {
-            int x = n / 2;
             result[0] = 0;
             int i = 1;
             while (i < n) {
