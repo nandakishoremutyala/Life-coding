@@ -46,7 +46,6 @@ public class JumpGameIII {
         if(pos<0||pos>=arr.length)return;
         if(result) return;
         if(arr[pos]==0){
-            System.out.println("Found");
             result=true;
         }
         if(visited[pos])return;
