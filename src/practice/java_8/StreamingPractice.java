@@ -21,7 +21,7 @@ public class StreamingPractice {
     public static void main(String[] args) {
         List<Employee> employees=createData();
         String searchKey="Ofa";
-        List<Employee> filteredEmp= employees.stream().filter(e->e.name.contains(searchKey)).collect(Collectors.toList());
+        List<Employee> filteredEmp= employees.stream().filter(e->e.name.toLowerCase().contains(searchKey.toLowerCase())).collect(Collectors.toList());
 
         printResult(filteredEmp);
     }
