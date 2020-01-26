@@ -35,7 +35,6 @@ public class DeleteLeavesWithGivenValue {
         if (root.left == null && root.right == null && root.val == target) return null;
         root.left = helper(root.left, target);
         root.right = helper(root.right, target);
-        //return helper(root,target);
         if(root.left==null && root.right==null && root.val==target)
             root=null;
         return root;
