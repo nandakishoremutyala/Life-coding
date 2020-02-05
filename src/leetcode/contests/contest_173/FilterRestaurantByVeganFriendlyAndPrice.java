@@ -51,7 +51,11 @@ public class FilterRestaurantByVeganFriendlyAndPrice {
         for (int[] res : restaurants) {
             restaurantList.add(new Restaurant(res[0], res[1], res[2], res[3], res[4]));
         }
-        List<Restaurant> res = restaurantList.stream().filter(restaurant -> restaurant.veganFriendly == veganFriendly)
+
+        if(veganFriendly==1){
+            restaurantList= restaurantList.stream().filter(restaurant -> restaurant.veganFriendly==1).collect(Collectors.toList());
+        }
+        List<Restaurant> res = restaurantList.stream()
                 .filter(restaurant -> restaurant.price <= maxPrice)
                 .filter(restaurant -> restaurant.distance <= maxDistance)
                 .collect(Collectors.toList());
