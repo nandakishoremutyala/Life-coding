@@ -146,7 +146,7 @@ HashMap<String,Long> map= (HashMap<String, Long>) Arrays.stream(arr).collect(Col
 * changing a bit from 0 to 1: 
 ```we can do OR operation : 0 OR 1 = 1 ```.
 
-How can we chnage a particular bit from 0 to 1. We will do the same OR but differently.
+How can we change a particular bit from 0 to 1. We will do the same OR but differently.
 Let say input is: 1011
 Take 1(4 bit binary form would be 0001) and make left shift 2 to change the third bit of input. 
 ```
@@ -154,6 +154,36 @@ Take 1(4 bit binary form would be 0001) and make left shift 2 to change the thir
 0100 OR 1011 = 1111
 ```
 
+* How to toggle a bit, from 0 to 1 and 1 to 0 ?
+we can do that by doing XOR
+```
+1 0 | 1
+0 1 | 1
+0 0 | 0
+1 1 | 0
+```
+Now, how to toggle a particular bit,
+Take 1 and do left shift to find the position and do the XOR operation. 
+Let say input is: 1011 
+```
+1 << 1 = 0010
+0010 XOR 1011= 1001
+```
+
+* How to make a bit switched off?
+                           ^
+Let take the input 1 0 0 1 1 1 0 1 and wants to turned off the hat bit. 
+Take 1, do left bit shift, do NOT and finally AND operation
+```
+0 0 0 0 0 0 0 1 << 4 = 0 0 0 0 1 0 0 0
+NOT(0 0 0 0 1 0 0 0) = 1 1 1 1 0 1 1 1
+
+    1 0 0 1 1 1 0 1
+AND 1 1 1 1 0 1 1 1 
+------------------
+    1 0 0 1 0 1 0 1
+
+```
 ### Shortcut code snippet
 * If you need to assign value to a variable based on comparison of others two: follow this
 ``` a = b == c ? 1 : 0```

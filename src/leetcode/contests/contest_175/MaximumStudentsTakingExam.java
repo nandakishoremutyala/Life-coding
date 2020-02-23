@@ -21,6 +21,7 @@ public class MaximumStudentsTakingExam {
         };
         int result= maximumStudentsTakingExam.maxStudents(seats);
         Assertions.assertEquals(4,result);
+        System.out.println(9>>0 & 1);
 
     }
     public int maxStudents(char[][] seats) {
@@ -59,3 +60,6 @@ public class MaximumStudentsTakingExam {
 
     }
 }
+
+
+//1010 >> 3 = 0101 && 0001 = 1
