@@ -138,12 +138,24 @@ HashMap<String,Long> map= (HashMap<String, Long>) Arrays.stream(arr).collect(Col
 #### Best way of understanding Huffman Encoding
 * https://www.youtube.com/watch?v=ikswC-irwY8&list=PLnfg8b9vdpLn9exZweTJx44CII1bYczuk&index=42
 
-#### Bit manipulation 
+### Bit manipulation 
 * ```x &= -x```  will give you the last set bit. 
 
 * XOR of same two number is 0 
+
+* changing a bit from 0 to 1: 
+```we can do OR operation : 0 OR 1 = 1 ```.
+
+How can we chnage a particular bit from 0 to 1. We will do the same OR but differently.
+Let say input is: 1011
+Take 1(4 bit binary form would be 0001) and make left shift 2 to change the third bit of input. 
+```
+1<<2=0100
+0100 OR 1011 = 1111
+```
 
 ### Shortcut code snippet
 * If you need to assign value to a variable based on comparison of others two: follow this
 ``` a = b == c ? 1 : 0```
 means if b and c are equal assign a=1 or a=0
+
