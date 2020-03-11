@@ -69,48 +69,48 @@ public class FrogPositionAfterTJumps {
         Assertions.assertEquals(0.16666666666666666,pro);
     }
 
+    @Test
+    public void fourthTest() {
+        int target = 2;
+        int n = 3;
+        int[][] edges = new int[][]{
+                {2, 1},
+                {3, 2}
+        };
+        int t = 1;
+        double pro = frogPositionAfterTJumps.frogPosition(n, edges, t, target);
+        System.out.println(pro);
+        Assertions.assertEquals(1.0,pro);
+    }
+
     List<Integer>[] v;
     double[] pro;
     boolean[] visited;
 
     public double frogPosition(int n, int[][] edges, int t, int target) {
-        v = new ArrayList[n + 1];
-        pro = new double[n + 1];
-        visited = new boolean[n + 1];
-        Arrays.fill(pro, Double.MAX_VALUE);
-        for (int i = 1; i <= n; i++) {
-            v[i] = new ArrayList<>();
+        List<Integer>[] graph = new List[n];
+        for (int i = 0; i < n; i++) graph[i] = new ArrayList<>();
+        for (int[] e : edges) {
+            graph[e[0] - 1].add(e[1] - 1);
+            graph[e[1] - 1].add(e[0] - 1);
         }
-
-        for (int[] edge : edges) {
-            v[edge[0]].add(edge[1]);
-        }
-
-        pro[1] = 1;
-        LinkedList<Integer> queue = new LinkedList<>();
-        queue.add(1);
-        bfs(pro, visited, target, queue);
-        return pro[target];
-    }
-
-    public void bfs(double[] pro, boolean[] visited, int target, LinkedList<Integer> queue) {
-        while (!queue.isEmpty()) {
-            int node = queue.poll();
-            if (visited[node]) continue;
-            for (Integer child : v[node]) {
-                if (!visited[child]) {
-                    queue.add(child);
-                    int size = v[node].size();
-                    double p = pro[node];
-                    double newP = (p / size);
-                    System.out.println(newP);
-                    pro[child] = newP;
-                    if (child == target) return;
+        boolean[] visited = new boolean[n]; visited[0] = true;
+        double[] prob = new double[n]; prob[0] = 1f;
+        Queue<Integer> q = new LinkedList<>(); q.offer(0);
+        while (!q.isEmpty() && t-- > 0) {
+            for (int size = q.size(); size > 0; size--) {
+                int u = q.poll(), nextVerticesCount = 0;
+                for (int v : graph[u]) if (!visited[v]) nextVerticesCount++;
+                for (int v : graph[u]) {
+                    if (!visited[v]) {
+                        visited[v] = true;
+                        q.offer(v);
+                        prob[v] = prob[u] / nextVerticesCount;
+                    }
                 }
+                if (nextVerticesCount > 0) prob[u] = 0; // frog don't stay vertex u, he keeps going to the next vertex
             }
-            visited[node] = true;
         }
-
+        return prob[target - 1];
     }
-
 }
