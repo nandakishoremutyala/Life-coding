@@ -35,9 +35,10 @@ public class LargestMultipleOfThree {
 
     @Test
     public void fourthTest() {
-        String result = largestMultipleOfThree.largestMultipleOfThree(new int[]{0,0,0,0,0,0});
+        String result = largestMultipleOfThree.largestMultipleOfThree(new int[]{0, 0, 0, 0, 0, 0});
         Assertions.assertEquals("0", result);
     }
+
     public String largestMultipleOfThree(int[] digits) {
         Queue<Integer> q1 = new LinkedList<>();
         Queue<Integer> q2 = new LinkedList<>();
@@ -55,7 +56,7 @@ public class LargestMultipleOfThree {
                 q3.add(d);
             }
         }
-        if(sum==0)return "0";
+        if (sum == 0) return "0";
         List<Integer> result = new ArrayList<>();
         if (sum % 3 == 0) {
             result = buildResultList(q1, q2, q3);
