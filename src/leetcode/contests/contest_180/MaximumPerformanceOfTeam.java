@@ -22,7 +22,7 @@ public class MaximumPerformanceOfTeam {
         int n = 6;
         int k = 2;
         int result = maximumPerformanceOfTeam.maxPerformance(n, speed, efficiency, k);
-        Assertions.assertEquals(60,result);
+        Assertions.assertEquals(60, result);
     }
 
     @Test
@@ -32,7 +32,7 @@ public class MaximumPerformanceOfTeam {
         int n = 6;
         int k = 3;
         int result = maximumPerformanceOfTeam.maxPerformance(n, speed, efficiency, k);
-        Assertions.assertEquals(68,result);
+        Assertions.assertEquals(68, result);
     }
 
     @Test
@@ -42,38 +42,27 @@ public class MaximumPerformanceOfTeam {
         int n = 6;
         int k = 4;
         int result = maximumPerformanceOfTeam.maxPerformance(n, speed, efficiency, k);
-        Assertions.assertEquals(72,result);
+        Assertions.assertEquals(72, result);
     }
 
     public int maxPerformance(int n, int[] speed, int[] efficiency, int k) {
-        TreeMap<Integer, int[]> map = new TreeMap<>(Collections.reverseOrder());
-        for (int i = 0; i < speed.length; i++) {
-            int s = speed[i];
-            int e = efficiency[i];
-            int[] arr = new int[2];
-            arr[0] = s;
-            arr[1] = e;
-            map.put((s * e), arr);
+        int MOD = (int) (1e9 + 7);
+        int[][] engineers = new int[n][2];
+        for (int i = 0; i < n; ++i)
+            engineers[i] = new int[]{efficiency[i], speed[i]};
 
+        Arrays.sort(engineers, (a, b) -> b[0] - a[0]);// efficiency from high to low
+
+        PriorityQueue<Integer> pq = new PriorityQueue<>(k, (a, b) -> a - b);//low to high
+        long res = Long.MIN_VALUE, totalSpeed = 0;
+
+        for (int[] engineer : engineers) {
+            if (pq.size() == k) totalSpeed -= pq.poll();  // layoff the one with min speed
+            pq.add(engineer[1]);
+            totalSpeed = (totalSpeed + engineer[1]);
+            res = Math.max(res, (totalSpeed * engineer[0]));  // min efficiency is the efficiency of new engineer
         }
-
-        List<Integer> speedList = new ArrayList<>();
-        List<Integer> effList = new ArrayList<>();
-
-        for (Map.Entry<Integer, int[]> e : map.entrySet()) {
-            if (k > 0) {
-                int[] arr = e.getValue();
-                speedList.add(arr[0]);
-                effList.add(arr[1]);
-                k--;
-            }else break;
-        }
-
-        System.out.println(speedList);
-        System.out.println(effList);
-        int sum = speedList.stream().mapToInt(Integer::intValue).sum();
-        int min= Collections.min(effList);
-        return sum*min;
+        return (int) (res % MOD);
     }
 
 }
