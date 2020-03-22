@@ -33,6 +33,7 @@ public class FourDivisors {
     public int sumFourDivisors(int[] nums) {
         int sum=0;
         int max=4;
+        // purpose of using cache to avoid duplicate computation.
         HashMap<Integer,List<Integer>> cache = new HashMap<>();
         List<Integer> allDivisors= new ArrayList<>();
         for (int i = 0; i < nums.length ; i++) {
