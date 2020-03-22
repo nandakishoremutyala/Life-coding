@@ -37,6 +37,15 @@ public class ValidPathInGrid {
         Assertions.assertEquals(result, true);
     }
 
+    @Test
+    public void thirdTest() {
+        int[][] grid = new int[][]{
+                {1, 1, 2}
+        };
+        boolean result = validPathInGrid.hasValidPath(grid);
+        Assertions.assertEquals(result, true);
+    }
+
     public boolean hasValidPath(int[][] grid) {
         Map<Integer, int[][]> rules = new HashMap<>();
         int[][] pro1 = new int[][]{{0, -1}, {0, 1}};
