@@ -45,18 +45,19 @@ public class ReduceANumberInBinaryRepresentationToOne {
     }
 
     public int numSteps(String s) {
-        int step = 0; int carry=0;
+        int step = 0;
+        int carry = 0;
         StringBuilder sb = new StringBuilder(s);
-        for (int i = sb.length()-1; i >0 ; --i) {
+        for (int i = sb.length() - 1; i > 0; --i) {
             // if it is odd, add 1 with it and update step by 2
             // what makes it odd, when last digit is 1
-            if(sb.charAt(i)-'0'+carry==1){
-                carry=1;
-                step+=2;
-            }else{
-                step+=1;
+            if (sb.charAt(i) - '0' + carry == 1) {
+                carry = 1;
+                step += 2;
+            } else {
+                step += 1;
             }
         }
-        return step+carry;
+        return step + carry;
     }
 }

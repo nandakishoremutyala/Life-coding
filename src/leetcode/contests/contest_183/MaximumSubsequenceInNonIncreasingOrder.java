@@ -18,7 +18,7 @@ public class MaximumSubsequenceInNonIncreasingOrder {
 
     @Test
     public void firstTest() {
-        int[] input =new int[]{1,7,4,7,1,9,4,8,8};
+        int[] input = new int[]{1, 7, 4, 7, 1, 9, 4, 8, 8};
         maximumSubsequenceInNonIncreasingOrder.minSubsequence(input);
 
     }
@@ -27,27 +27,23 @@ public class MaximumSubsequenceInNonIncreasingOrder {
         Arrays.sort(nums);
         int sum = Arrays.stream(nums).sum();
         int target = sum / 2;
-        int def = sum%2;
+        int def = sum % 2;
 
         int pre = 0;
         int i;
         for (i = 0; i < nums.length; i++) {
             pre += nums[i];
-            if(def==0){
+            if (def == 0) {
                 if (pre >= target) break;
-            }else{
-                if(pre>target) break;
+            } else {
+                if (pre > target) break;
             }
-
-
         }
         List<Integer> result = new ArrayList<>();
         for (int j = i; j < nums.length; j++) {
             result.add(nums[j]);
         }
-        Collections.sort(result,Collections.reverseOrder());
+        Collections.sort(result, Collections.reverseOrder());
         return result;
-
     }
-
 }
