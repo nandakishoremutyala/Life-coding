@@ -37,9 +37,6 @@ public class UndergroundSystem {
         public void setTime(int time) {
             this.time = time;
         }
-
-        public Transaction() {
-        }
     }
 
     HashMap<Integer, Transaction> userCheckIn = new HashMap<>();
@@ -65,7 +62,6 @@ public class UndergroundSystem {
     public double getAverageTime(String startStation, String endStation) {
         Set<Integer> start = gates.get(startStation);
         Set<Integer> end = gates.get(endStation);
-
 
         Iterator<Integer> it = start.iterator();
         int n=0;
