@@ -29,7 +29,7 @@ public class ReduceANumberInBinaryRepresentationToOne {
     @Test
     public void thirdTest() {
         int steps = reduceANumberInBinaryRepresentationToOne.numSteps("1111110011101010110011100100101110010100101110111010111110110010");
-        Assertions.assertEquals(0, steps);
+        Assertions.assertEquals(89, steps);
     }
 
     @Test
@@ -41,31 +41,22 @@ public class ReduceANumberInBinaryRepresentationToOne {
     @Test
     public void fifthTest() {
         int steps = reduceANumberInBinaryRepresentationToOne.numSteps("11000");
-        Assertions.assertEquals(0, steps);
+        Assertions.assertEquals(6, steps);
     }
 
     public int numSteps(String s) {
-        int step = 0;
+        int step = 0; int carry=0;
         StringBuilder sb = new StringBuilder(s);
-        while (sb.length() != 0 && sb.charAt(sb.length() - 1) == '0' && sb.charAt(0) == '1') {
-            sb.deleteCharAt(sb.length() - 1);
-            sb.deleteCharAt(0);
-            step++;
-        }
-        if (sb.length() == 0) return step;
-        long num = Long.parseLong(sb.toString(), 2);
-
-        if(num==0) return step;
-        while (num != 1) {
-            String binary = Long.toBinaryString(num);
-            if (binary.charAt(binary.length() - 1) != '0') {
-                num += 1;
-                step++;
+        for (int i = sb.length()-1; i >0 ; --i) {
+            // if it is odd, add 1 with it and update step by 2
+            // what makes it odd, when last digit is 1
+            if(sb.charAt(i)-'0'+carry==1){
+                carry=1;
+                step+=2;
+            }else{
+                step+=1;
             }
-            num = num >> 1;
-            step++;
         }
-        return step;
-
+        return step+carry;
     }
 }
