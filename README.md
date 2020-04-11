@@ -130,10 +130,7 @@ HashMap<String,Long> map= (HashMap<String, Long>) Arrays.stream(arr).collect(Col
 ```           
 
 #### Best Way to understand backtracking
-* https://www.youtube.com/watch?v=78t_yHuGg-0
-* https://www.youtube.com/watch?v=5v6zdfkImms
-* https://www.youtube.com/watch?v=78t_yHuGg-0
-* https://www.youtube.com/watch?v=HvGkzDT2ffI&t=1492s
+* https://www.bilibili.com/video/av36351060?p=1
 
 #### Best way of understanding Huffman Encoding
 * https://www.youtube.com/watch?v=ikswC-irwY8&list=PLnfg8b9vdpLn9exZweTJx44CII1bYczuk&index=42
