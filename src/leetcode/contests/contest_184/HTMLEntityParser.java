@@ -62,7 +62,7 @@ public class HTMLEntityParser {
     public java.lang.String entityParser(String text) {
         HashMap<String, Character> map = new HashMap<>();
         map.put("&quot;", '"');
-        map.put("&apos;", '#');
+        map.put("&apos;", '#');// single quote, i was not able to store.so handled differently
         map.put("&amp;", '&');
         map.put("&gt;", '>');
         map.put("&lt;", '<');
@@ -80,7 +80,6 @@ public class HTMLEntityParser {
                 String str = text.substring(start, i+1);
                 start=i+1;
                 if(map.get(str)!=null){
-
                     if(map.get(str)=='#')
                         sb.append("'");
                     else
@@ -88,7 +87,6 @@ public class HTMLEntityParser {
                 }else {
                     sb.append(str);
                 }
-
             }
         }
         sb.append(text.substring(start));
