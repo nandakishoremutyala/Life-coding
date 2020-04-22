@@ -1,4 +1,4 @@
-package practice.mordern_java_recipes.basics;
+package practice.mordern_java_recipes;
 
 public class Bird implements Animal {
     @Override
