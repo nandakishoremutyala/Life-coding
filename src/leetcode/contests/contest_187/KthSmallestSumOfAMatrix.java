@@ -21,7 +21,7 @@ public class KthSmallestSumOfAMatrix {
                 {2, 4, 6}
         };
         int k = 5;
-        int res = kthSmallest(matrix, k);
+        int res = kthSmallestCorrection(matrix, k);
         System.out.println(res);
     }
 
@@ -56,7 +56,6 @@ public class KthSmallestSumOfAMatrix {
         int row = mat.length;
         int col = mat[0].length;
 
-        // max priority queue for the first row
         // take all the elements from the first row and add to the queue
         PriorityQueue<Integer> pq = new PriorityQueue<>(Comparator.reverseOrder());
         for (int c = 0; c < col; c++) {
@@ -68,7 +67,6 @@ public class KthSmallestSumOfAMatrix {
         }
 
         for (int r = 1; r < row; r++) {
-            // max priority queue for the i-th row
             PriorityQueue<Integer> nextPq = new PriorityQueue<>(Comparator.reverseOrder());
             // for each of the element in the queue, take the next row element and add
             // take only those element only upto to k size, so we can save some computation

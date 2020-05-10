@@ -24,7 +24,7 @@ public class MasterPrinter {
     public static void printList(List<?> list) {
         System.out.println("");
         for (Object o : list)
-            System.out.print(o.toString());
+            System.out.print(o.toString()+" ");
     }
 
     public static void printArrayChars(char[][] chars) {
