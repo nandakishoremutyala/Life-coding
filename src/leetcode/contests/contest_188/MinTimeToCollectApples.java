@@ -11,14 +11,11 @@ import java.util.List;
 
 public class MinTimeToCollectApples {
     MinTimeToCollectApples minTimeToCollectApples;
-    private static int cost = 0;
     static boolean[] visited;
-    int found=0;
 
     @BeforeEach
     public void init() {
         minTimeToCollectApples = new MinTimeToCollectApples();
-        found=0;
     }
 
     @Test
@@ -26,10 +23,10 @@ public class MinTimeToCollectApples {
         int[][] edges = new int[][]{
                 {0, 1}, {0, 2}, {1, 4}, {1, 5}, {2, 3}, {2, 6}
         };
-        List<Boolean> hasApple =Arrays.asList(false,false,true,false,true,true,false);
-        int n=7;
-        visited=new boolean[n];
-        int minTime = minTimeToCollectApples.minTime(n,edges,hasApple);
+        List<Boolean> hasApple = Arrays.asList(false, false, true, false, true, true, false);
+        int n = 7;
+        visited = new boolean[n];
+        int minTime = minTimeToCollectApples.minTime(n, edges, hasApple);
         System.out.println(minTime);
     }
 
@@ -38,10 +35,10 @@ public class MinTimeToCollectApples {
         int[][] edges = new int[][]{
                 {0, 1}, {0, 2}, {1, 4}, {1, 5}, {2, 3}, {2, 6}
         };
-        List<Boolean> hasApple =Arrays.asList(false,false,true,false,false,true,false);
-        int n=7;
-        visited=new boolean[n];
-        int minTime = minTimeToCollectApples.minTime(n,edges,hasApple);
+        List<Boolean> hasApple = Arrays.asList(false, false, true, false, false, true, false);
+        int n = 7;
+        visited = new boolean[n];
+        int minTime = minTimeToCollectApples.minTime(n, edges, hasApple);
         System.out.println(minTime);
     }
 
@@ -62,35 +59,26 @@ public class MinTimeToCollectApples {
             tree[end].add(start);
         }
 
-        ArrayDeque stack=new ArrayDeque();
-        stack.add(0);
-        doBfs(0, tree, appleCount, hasApple, stack);
-        return cost;
+        LinkedList<Integer> queue = new LinkedList<>();
+        queue.add(0);
+        return doBfs(tree, 0, 0, hasApple);
+
     }
 
-    private void doBfs(int start,
-                       List<Integer>[] tree,
-                       int appleCount,
-                       List<Boolean> hasApple,
-                       ArrayDeque<Integer> stack) {
-        if (!stack.isEmpty() && appleCount != found) {
-            int data = stack.poll();
-            if (hasApple.get(data)) found++;
-            if (!visited[data] && appleCount != found) {
-                visited[data]=true;
-
-                for (int i = 0; i <tree[data].size() ; i++) {
-                    int node=tree[data].get(i);
-                    if(!visited[node]){
-                        stack.add(tree[data].get(i));
-                        cost++;
-                        doBfs(start,tree,appleCount,hasApple,stack);
-                        cost++;
-                    }
-                }
-            }
-
+    private int doBfs(List<Integer>[] tree,
+                      int cost,
+                      int start,
+                      List<Boolean> hasApple) {
+        int localStep = 0;
+        if (visited[start]) return 0;
+        visited[start] = true;
+        for (int i = 0; i < tree[start].size(); i++) {
+            int node = tree[start].get(i);
+            localStep += doBfs(tree, 2, node, hasApple);
         }
-
+        if (!hasApple.get(start) && localStep == 0) {
+            return 0;
+        }
+        return cost + localStep;
     }
 }
