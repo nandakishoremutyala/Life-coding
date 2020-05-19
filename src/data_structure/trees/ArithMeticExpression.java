@@ -1,9 +1,7 @@
 package data_structure.trees;
-
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class ArithMaticExpressionTree {
+public class ArithMeticExpression {
     class Node {
         char val;
         Node left;
@@ -38,7 +36,6 @@ public class ArithMaticExpressionTree {
             int r=aet(root.right);
             System.out.println("left "+l);
             System.out.println("right "+r);
-
             return ops(val,l,r);
         }else return root.val;
     }
