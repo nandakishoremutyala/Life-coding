@@ -1,5 +1,6 @@
 package leetcode.contests.contest_191;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +20,7 @@ public class ReOrderRoutes {
         int[][] connections=new int[][]{{0,1},{1,3},{2,3},{4,0},{4,5}};
         int n=6;
         int res= reOrderRoutes.minReorder(n,connections);
-        System.out.println(res);
+        Assertions.assertEquals(3,res);
 
     }
 
@@ -28,7 +29,7 @@ public class ReOrderRoutes {
         int[][] connections=new int[][]{{1,0},{1,2},{3,2},{3,4}};
         int n=5;
         int res= reOrderRoutes.minReorder(n,connections);
-        System.out.println(res);
+        Assertions.assertEquals(2,res);
 
     }
 
@@ -37,7 +38,7 @@ public class ReOrderRoutes {
         int[][] connections=new int[][]{{1,0},{2,0}};
         int n=3;
         int res= reOrderRoutes.minReorder(n,connections);
-        System.out.println(res);
+        Assertions.assertEquals(0,res);
 
     }
 
