@@ -42,11 +42,12 @@ public class ReOrderRoutes {
     }
 
     public int minReorder(int n, int[][] connections) {
+        change=0;
         Set<String> pathsOrder=new HashSet<>();
         for(int[] p:connections){
             int a=p[0];
             int b=p[1];
-            pathsOrder.add(String.valueOf(a)+"#"+String.valueOf(b));
+            pathsOrder.add(a +"#"+ b);
         }
 
         List<Integer>[] graph=new ArrayList[n];
@@ -57,22 +58,19 @@ public class ReOrderRoutes {
         boolean[] visited=new boolean[n];
 
         dfs(graph,visited,pathsOrder);
-        //System.out.println(change);
         return connections.length-change;
     }
 
     private void dfs(List<Integer>[] graph, boolean[] visited,Set<String> paths) {
         Queue<Integer> queue=new LinkedList<>();
         queue.add(0);
-        //visited[0]=true;
-
         while (!queue.isEmpty()){
             int v=queue.poll();
             if(!visited[v]){
                 List<Integer> childs=graph[v];
                 for(int child:childs){
                     if(!visited[child]){
-                        String str=String.valueOf(v)+"#"+String.valueOf(child);
+                        String str= v +"#"+ child;
                         if(!paths.contains(str))
                             change++;
                         queue.add(child);
