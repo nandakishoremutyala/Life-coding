@@ -13,8 +13,6 @@ public class MaxAreaOfAPieceOfCakeAfterHVCuts {
     }
     @Test
     public void firstTest(){
-
-        maxAreaOfAPieceOfCakeAfterHVCuts.maxArea();
     }
 
     public int maxArea(int h, int w, int[] horizontalCuts, int[] verticalCuts) {
