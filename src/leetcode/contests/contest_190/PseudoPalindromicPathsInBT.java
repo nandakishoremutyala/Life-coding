@@ -1,6 +1,7 @@
 package leetcode.contests.contest_190;
 
 import leetcode.TreeNode;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,14 +11,20 @@ import java.util.List;
 public class PseudoPalindromicPathsInBT {
 
     @Test
-    public void firstTest(){
+    public void firstTest() {
+        TreeNode root = buildTree();
+        int res = pseudoPalindromicPaths(root);
+        Assertions.assertEquals(1,res);
+    }
+
+    private TreeNode buildTree() {
         TreeNode root = new TreeNode(2);
         root.left = new TreeNode(1);
         root.right = new TreeNode(1);
         root.left.left = new TreeNode(1);
         root.left.right = new TreeNode(3);
         root.left.right.right = new TreeNode(1);
-        pseudoPalindromicPaths(root);
+        return root;
     }
 
     public int pseudoPalindromicPaths(TreeNode root) {
@@ -26,39 +33,34 @@ public class PseudoPalindromicPathsInBT {
         sb.append(root.val);
         findPaths(root, sb,
                 paths);
-        int count=0;
-        for(String str:paths) {
-           if( canFormPalindrome(str))
-               count++;
+        int count = 0;
+        for (String str : paths) {
+            System.out.println(str);
+            if (canFormPalindrome(str))
+                count++;
         }
-
         return count;
-
     }
 
     private void findPaths(TreeNode root,
                            StringBuilder stringBuilder,
                            ArrayList<String> result) {
         if (root.left == null && root.right == null) {
-            //stringBuilder.append(root.val);
             result.add(stringBuilder.toString());
-
         }
-        if (root.left != null){
+        if (root.left != null) {
             stringBuilder.append(root.left.val);
             findPaths(root.left, stringBuilder, result);
         }
 
-        if (root.right != null){
+        if (root.right != null) {
             stringBuilder.append(root.right.val);
             findPaths(root.right, stringBuilder, result);
         }
-        stringBuilder.deleteCharAt(stringBuilder.length()-1);
+        stringBuilder.deleteCharAt(stringBuilder.length() - 1);
     }
 
     static boolean canFormPalindrome(String str) {
-
-        // Create a list
         List<Character> list = new ArrayList<Character>();
 
         // For each character in input strings,
@@ -78,6 +80,5 @@ public class PseudoPalindromicPathsInBT {
             return true;
         else
             return false;
-
     }
 }
