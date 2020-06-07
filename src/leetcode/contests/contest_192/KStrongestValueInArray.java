@@ -63,15 +63,8 @@ public class KStrongestValueInArray {
 
     public int[] getStrongest(int[] arr, int k) {
         Arrays.sort(arr);
-        int n = arr.length;
-        int median = 0;
-        if (n % 2 != 0) {
-            median = arr[n / 2];
-        } else {
-            median = ((arr[n / 2 - 1] + arr[n / 2])) / 2;
-        }
-
-        System.out.println(median);
+        int median = arr[(arr.length - 1) / 2];
+        int n=arr.length;
 
         TreeMap<Integer, ArrayList<Integer>> map = new TreeMap<>(Comparator.reverseOrder());
 
@@ -79,7 +72,7 @@ public class KStrongestValueInArray {
             int diff = Math.abs(arr[i] - median);
             map.compute(diff, (key, value) -> value == null ? new ArrayList<>() : value).add(arr[i]);
         }
-        System.out.println(map);
+        //System.out.println(map);
         int[] res = new int[k];
         int it = 0;
         Iterator<Map.Entry<Integer, ArrayList<Integer>>> itr = map.entrySet().iterator();
