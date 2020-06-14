@@ -7,60 +7,51 @@ public class PaintHouseIII {
     PaintHouseIII paintHouseIII;
 
     /**
-     *
      * 1   10 -> if you paint with color 1, cost is 1. if you paint with color 2 cost is 10
      * 10  1
      * 10  1
      * 1   10
      * 5   1
-     *
-     * */
+     */
+
+    int[][][] dp = new int[101][23][101]; // i th house j color k group
 
     @BeforeEach
     public void init() {
         paintHouseIII = new PaintHouseIII();
     }
+
     @Test
-    public void firstTest(){
-        int[] houses=new int[]{0,0,0,0,0};
-        int[][] cost =new int[][]{{1,10},{10,1},{1,10},{1,10},{5,1}};
-        minCost(houses,cost,5,2,3);
+    public void firstTest() {
+        int[] houses = new int[]{0, 0, 0, 0, 0};
+        int[][] cost = new int[][]{{1, 10}, {10, 1}, {1, 10}, {1, 10}, {5, 1}};
+        int res = minCost(houses, cost, 5, 2, 3);
+        System.out.println(res);
     }
+
     public int minCost(int[] houses, int[][] cost, int m, int n, int target) {
-        return dfs(houses,cost,n,target,m,0,0,0);
+
+        int res = dfs(houses, cost, 0, n + 1, target);
+        return res >= 10000000 ? -1 : res;
 
     }
 
-    private int dfs(int[] houses, int[][] cost, int nColor, int target, int nHouses, int minCost,int group, int curr) {
-        if(group>target) return Integer.MAX_VALUE;
-
-        if(curr==nHouses)
-            return minCost;
-
-        for (int i = 1; i <=nColor ; i++) {
-            if(houses[curr]==0){
-                // color it
-                houses[curr]=i;
-                minCost+=cost[curr][i-1];
-                if(curr!=0 && houses[curr-1]==i){
-                    int g=group;
-                    dfs(houses,cost,nColor,target,nHouses,minCost,g,curr+1);
-                }else{
-                    int g=group+1;
-                    dfs(houses,cost,nColor,target,nHouses,minCost,g,curr+1);
-                }
-            }else{
-                if(curr!=0 && houses[curr-1]==i){
-                    int g=group;
-                    dfs(houses,cost,nColor,target,nHouses,minCost,g,curr+1);
-                }else{
-                    int g=group+1;
-                    dfs(houses,cost,nColor,target,nHouses,minCost,g,curr+1);
-                }
+    private int dfs(int[] houses, int[][] cost, int curr, int prev, int target) {
+        if (curr >= houses.length) return target != 0 ? 10000000 : 0;
+        if (target < 0) return 10000000;
+        if (dp[curr][prev][target] >= 0) return dp[curr][prev][target];
+        int res = Integer.MAX_VALUE;
+        if (houses[curr] == 0) {
+            for (int i = 0; i < cost[curr].length; i++) {
+                res = Math.min(res, cost[curr][i] + dfs(houses, cost, curr + 1, i + 1, target - (curr + 1 != prev ? 0 : 1)));
             }
-        }
-        System.out.println(minCost);
-        return minCost;
-    }
+        } else {
+            res = Math.min(res, dfs(houses, cost, curr + 1, houses[curr], target - (houses[curr] != prev ? 0 : 1)));
 
+        }
+        return dp[curr][prev][target] = res;
+    }
 }
+
+
+
