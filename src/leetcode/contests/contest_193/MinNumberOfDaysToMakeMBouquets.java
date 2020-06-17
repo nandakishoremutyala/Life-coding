@@ -23,6 +23,14 @@ public class MinNumberOfDaysToMakeMBouquets {
 
     }
 
+    @Test
+    public void secondTest() {
+        int[] bloomDay = new int[]{81,23,10,90,68,43,81,10,92,65,47,57,51,74,61,79,18,52,74,90};int  m = 2; int k = 7;
+        int res=  minDays(bloomDay,m,k);
+        System.out.println(res);
+
+    }
+
     public int minDays(int[] bloomDay, int m, int k) {
         // we need minimum m*k flowers to bloom
         int n = bloomDay.length;
@@ -39,29 +47,23 @@ public class MinNumberOfDaysToMakeMBouquets {
         }
 
         int totalBloomed = 0;
+        int firstBloom=Integer.MAX_VALUE;
         for (Map.Entry<Integer, ArrayList<Integer>> e : map.entrySet()) {
             int day = e.getKey();
             totalBloomed += e.getValue().size();
             for (int bloom : e.getValue()) {
+                firstBloom=Math.min(firstBloom,bloom-1);
                 flowers[bloom-1] = 1;
             }
             if (totalBloomed >= min) {
-                if(canWeFullBoquets(flowers, m, k)) return day;
+                if(canWeFullBoquets(flowers, m, k,firstBloom)) return day;
             }
 
         }
         return -1;
     }
 
-    private boolean canWeFullBoquets(int[] flowers, int m, int k) {
-        int firstBloom = -1;
-        int p = 0;
-        while (p < flowers.length) {
-            if (flowers[p] == 1) {
-                firstBloom = p;
-                break;
-            }
-        }
+    private boolean canWeFullBoquets(int[] flowers, int m, int k, int firstBloom) {
         if (firstBloom == -1) return false;
 
         int pos = firstBloom + 1;
@@ -78,6 +80,5 @@ public class MinNumberOfDaysToMakeMBouquets {
         }
         if (m <= 0) return true;
         return false;
-
     }
 }
