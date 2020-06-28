@@ -14,7 +14,7 @@ public class CriticalEdgeInMST {
     }
     @Test
     public void firstTest(){
-        criticalEdgeInMST.findCriticalAndPseudoCriticalEdges();
+        criticalEdgeInMST.findCriticalAndPseudoCriticalEdges(1,null);
     }
     class Edge implements Comparable<Edge> {
         int src, dest, weight;
