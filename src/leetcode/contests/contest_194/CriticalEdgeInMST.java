@@ -3,6 +3,7 @@ package leetcode.contests.contest_194;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -16,102 +17,73 @@ public class CriticalEdgeInMST {
     public void firstTest(){
         criticalEdgeInMST.findCriticalAndPseudoCriticalEdges(1,null);
     }
-    class Edge implements Comparable<Edge> {
-        int src, dest, weight;
 
-        @Override
-        public int compareTo(Edge o) {
-            return this.weight - o.weight;
-        }
-    }
+    class UnionFind {
+        int[] parent;
 
-    class subset {
-        int parent;
-        int rank;
-    }
-
-    class Graph {
-        int V;
-        Edge[] edges;
-        int E;
-
-        subset[] subsets = new subset[V];
-
-        Graph(int v, int e) {
-            this.E = e;
-            this.V = v;
-            edges = new Edge[e];
-
-
-            for (int i = 0; i < e; i++) {
-                edges[i] = new Edge();
-            }
-
-
-            for (int i = 0; i < V; ++i)
-                subsets[i] = new subset();
-
-            // Create V subsets with single elements
-            for (int j = 0; j < V; j++) {
-                subsets[v].parent = j;
-                subsets[v].rank = 0;
-            }
-        }
-
-        void buildGraph(int[][] edges) {
-            for (int i = 0; i < edges.length; i++) {
-                int[] e = edges[i];
-                this.edges[i].src = e[0];
-                this.edges[i].dest = e[1];
-                this.edges[i].weight = e[2];
+        UnionFind(int n) {
+            this.parent=new int[n];
+            for (int i = 0; i < n; i++) {
+                parent[i]=i;
             }
         }
 
         int find(int i){
-            if(subsets[i].parent!=i){
-                subsets[i].parent= find(subsets[i].parent);
+            while (parent[i]!=i){
+                i=parent[i];
             }
-            return subsets[i].parent;
+            return i;
         }
 
-        void union(int x, int y){
-            int xroot=find(x);
-            int yroot=find(y);
-
-            if(subsets[xroot].rank<subsets[y].rank){
-                subsets[xroot].parent=yroot;
-            }else if(subsets[xroot].rank>subsets[y].rank){
-                subsets[yroot].parent=xroot;
-            }else{
-                subsets[yroot].parent=xroot;
-                subsets[xroot].rank++;
-            }
+        boolean union(int x, int y){
+           int px=find(x);
+           int py=find(y);
+           if(px==py) return false;
+           parent[px]=py;
+           return true;
         }
     }
 
     public List<List<Integer>> findCriticalAndPseudoCriticalEdges(int n, int[][] edges) {
-        Graph g=new Graph(n,edges.length);
-        g.buildGraph(edges);
-
-        int i=0;
-        int e=0;
-        Arrays.sort(g.edges);
-        Edge[] result=new Edge[e];
-        while(e<g.V-1){
-            Edge nextEdge=g.edges[i++];
-            int x=g.find(nextEdge.src);
-            int y=g.find(nextEdge.dest);
-            if(x!=y){
-                result[e++] = nextEdge;
-                g.union( x, y);
+        List<Integer> criticalEdges = new ArrayList<>();
+        List<Integer> pseudoCriticalEdges = new ArrayList<>();
+        for (int i = 0; i < edges.length; i++) {
+            edges[i] = new int[]{edges[i][0], edges[i][1], edges[i][2], i};
+        }
+        Arrays.sort(edges, (a,b) -> Integer.compare(a[2], b[2]));
+        int mstWeight = buildAndGetMSTHeight(n, edges, -1, -1);
+        for (int i = 0; i < edges.length; i++) {
+            if (mstWeight < buildAndGetMSTHeight(n, edges, i, -1)) {
+                criticalEdges.add(edges[i][3]);
+            }
+            else if (mstWeight == buildAndGetMSTHeight(n, edges, -1, i)) {
+                pseudoCriticalEdges.add(edges[i][3]);
             }
         }
+        return Arrays.asList(criticalEdges, pseudoCriticalEdges);
 
-        for (Edge ed:result
-             ) {
-            System.out.println(ed.src+'-'+ed.dest);
+    }
+
+    private int buildAndGetMSTHeight(int n, int[][] edges, int block, int preEdge) {
+        int weight = 0;
+        UnionFind uf = new UnionFind(n);
+        if (preEdge != -1) {
+            weight += edges[preEdge][2];
+            uf.union(edges[preEdge][0], edges[preEdge][1]);
         }
-        return null;
-
+        for (int i = 0; i < edges.length; i++) {
+            if (i == block || i == preEdge) {
+                continue;
+            }
+            if (uf.union(edges[i][0], edges[i][1])) {
+                weight += edges[i][2];
+            }
+        }
+        for (int i = 0; i < n; i++) {
+            if (uf.find(i) != uf.find(0)) {
+                return Integer.MAX_VALUE;
+            }
+        }
+        return weight;
     }
 }
