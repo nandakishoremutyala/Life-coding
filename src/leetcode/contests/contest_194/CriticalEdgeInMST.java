@@ -50,6 +50,7 @@ public class CriticalEdgeInMST {
         for (int i = 0; i < edges.length; i++) {
             edges[i] = new int[]{edges[i][0], edges[i][1], edges[i][2], i};
         }
+        // sort the edges based on weight
         Arrays.sort(edges, (a,b) -> Integer.compare(a[2], b[2]));
         int mstWeight = buildAndGetMSTHeight(n, edges, -1, -1);
         for (int i = 0; i < edges.length; i++) {
@@ -65,6 +66,7 @@ public class CriticalEdgeInMST {
     }
 
     private int buildAndGetMSTHeight(int n, int[][] edges, int block, int preEdge) {
+        // block and preEdge is accept and edge or not
         int weight = 0;
         UnionFind uf = new UnionFind(n);
         if (preEdge != -1) {
@@ -79,6 +81,7 @@ public class CriticalEdgeInMST {
                 weight += edges[i][2];
             }
         }
+        // This part is to verify that all the nodes has been added into MST or not
         for (int i = 0; i < n; i++) {
             if (uf.find(i) != uf.find(0)) {
                 return Integer.MAX_VALUE;
