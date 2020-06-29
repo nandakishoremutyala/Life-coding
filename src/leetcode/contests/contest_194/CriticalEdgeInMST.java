@@ -8,16 +8,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class CriticalEdgeInMST {
-    CriticalEdgeInMST criticalEdgeInMST;
-    @BeforeEach
-    public void init(){
-        criticalEdgeInMST=new CriticalEdgeInMST();
-    }
-    @Test
-    public void firstTest(){
-        criticalEdgeInMST.findCriticalAndPseudoCriticalEdges(1,null);
-    }
-
     class UnionFind {
         int[] parent;
 
