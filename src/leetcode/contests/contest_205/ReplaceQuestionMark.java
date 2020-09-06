@@ -51,7 +51,6 @@ public class ReplaceQuestionMark {
                     }
                     arr[j]=characters[i];
                 }
-
             }
         }
 
