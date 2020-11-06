@@ -31,6 +31,8 @@ Tree:
    
 ## Dynamic Programming   
 * Understanding Longest common subsequence: https://www.youtube.com/watch?v=43P0xZp3FU4
+* https://avikdas.com/2019/04/15/a-graphical-introduction-to-dynamic-programming.html
+* Great example of dynamic programming in realworld: https://avikdas.com/2019/05/14/real-world-dynamic-programming-seam-carving.html
    
 ## Understanding SSTable
 
