@@ -5,19 +5,19 @@ import org.junit.jupiter.api.Test;
 
 import java.util.PriorityQueue;
 
-public class JumGameVI {
-    JumGameVI jumGameVI;
+public class JumpGameVI {
+    JumpGameVI jumpGameVI;
 
     @BeforeEach
     public void init() {
-        jumGameVI = new JumGameVI();
+        jumpGameVI = new JumpGameVI();
     }
 
     @Test
     public void firstTest() {
         int[] nums = new int[]{1, -1, -2, 4, -7, 3};
         int k = 2;
-        int result = jumGameVI.maxResult(nums, k);
+        int result = jumpGameVI.maxResult(nums, k);
         System.out.println(result);
     }
 
@@ -25,7 +25,7 @@ public class JumGameVI {
     public void secondTest() {
         int[] nums = new int[]{10, -5, -2, 4, 0, 3};
         int k = 3;
-        int result = jumGameVI.maxResult(nums, k);
+        int result = jumpGameVI.maxResult(nums, k);
         System.out.println(result);
     }
 
@@ -33,7 +33,7 @@ public class JumGameVI {
     public void thirdTest() {
         int[] nums = new int[]{1, -5, -20, 4, -1, 3, -6, -3};
         int k = 2;
-        int result = jumGameVI.maxResult(nums, k);
+        int result = jumpGameVI.maxResult(nums, k);
         System.out.println(result);
     }
 
