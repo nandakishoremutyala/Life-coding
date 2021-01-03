@@ -27,7 +27,6 @@ public class MaximumUnitsOnATruck {
     public int maximumUnits(int[][] boxTypes, int truckSize) {
         Arrays.sort(boxTypes, Comparator.comparingInt(a -> a[1]));
         Collections.reverse(Arrays.asList(boxTypes));
-        System.out.println(boxTypes);
         int max=0;
         for(int[] x:boxTypes){
             int box=x[0];
