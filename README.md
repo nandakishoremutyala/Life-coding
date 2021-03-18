@@ -1,3 +1,4 @@
+### Note: There are few solutions here might be incorrect since I put my practice code here. If you find anything wrong, please create PR and help to fix it. So others will be benefited in future. 
 # Life-coding
 Solve one problem everyday. 
 
