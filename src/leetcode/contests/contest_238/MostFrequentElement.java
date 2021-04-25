@@ -5,29 +5,18 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 
 public class MostFrequentElement {
-    @Test
-    public void firstTest(){
-        maxFrequency(new int[]{1,2,4},5);
-    }
     public int maxFrequency(int[] nums, int k) {
         Arrays.sort(nums);
-        int max=0;
-        for (int i = nums.length - 1; i >= 0; i--) {
-            int temp = findMax(nums, k, i);
-            System.out.println(temp);
-            max=Math.max(temp,max);
+        long sum=0;
+        int max=1, i=0, j;
+        for(j=0;j<nums.length;++j){
+            sum+=nums[j];
+            while(sum+k<(long)nums[j]*(j-i+1)){
+                sum-=nums[i];
+                i++;
+            }
+            max=Math.max(max,j-i+1);
         }
         return max;
-    }
-
-    private int findMax(int[] nums, int k, int start) {
-        int max = nums[start];
-        int upperBound = start;
-        int repetition = 0;
-        while (start >= 0 && k >= 0 && nums[start]+k>=max) {
-            k -= (max - nums[start]);
-            start--;
-        }
-        return upperBound - start;
     }
 }
