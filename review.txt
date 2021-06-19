@@ -7,7 +7,7 @@
 
 ******************OTHERS**********************
 
-01. Longest Increasing Subsequence----last Try: 03/2019
+01. Longest Increasing Subsequence----last Try: 06/2021
 02. Longest common subsequence
 03. Segment data_structure.tree: https://github.com/jakobkogler/Algorithm-DataStructures/blob/master/RangeQuery/SegmentTree.java
 04. Segement data_structure.tree for sum, min and any other implementation
