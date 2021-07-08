@@ -55,6 +55,5 @@ public class BinaryTreeLock {
         if (!left) return false;
         boolean right = checkLockPreCondition(node.leftChild);
         return right;
-
     }
 }
