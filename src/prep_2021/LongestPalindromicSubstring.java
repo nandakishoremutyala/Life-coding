@@ -10,7 +10,7 @@ public class LongestPalindromicSubstring {
     public static String longestPalindrome(String s) {
          if(s.length()==0)return "";
          if(s.length()==1) return s;
-         StringBuilder sb=new StringBuilder();
+         StringBuilder sb=new StringBuilder() ;
         for (int i = 0; i <s.length() ; i++) {
             int l=i,r =i;
             // odd
