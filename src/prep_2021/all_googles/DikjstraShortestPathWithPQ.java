@@ -21,14 +21,11 @@ public class DikjstraShortestPathWithPQ {
 
     public DikjstraShortestPathWithPQ(int v) {
         this.V=v;
-        this.pq=new PriorityQueue<>(V,(a,b)->{
-            if (a.cost<b.cost) return -1;
-            else if(a.cost>b.cost) return 1;
-            else return 0;
-        });
+        this.pq=new PriorityQueue<>(V, Comparator.comparingInt(a -> a.cost));
         dist=new int[V];
-        visited = new HashSet<Integer>();
+        visited = new HashSet<>();
     }
+
     public void algo(List<List<Node> > graph, int src){
         this.graph=graph;
         for (int i = 0; i < V; i++) {
