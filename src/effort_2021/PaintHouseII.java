@@ -1,13 +1,10 @@
-package prep_2021.all_googles;
+package effort_2021;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.IntStream;
 
 public class PaintHouseII {
 

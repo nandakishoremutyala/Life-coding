@@ -1,4 +1,4 @@
-package prep_2021.all_googles;
+package effort_2021;
 
 public class StudentAttendanceRecordII {
     public static void main(String[] args) {

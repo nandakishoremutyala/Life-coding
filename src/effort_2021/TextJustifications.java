@@ -1,4 +1,4 @@
-package prep_2021.all_googles;
+package effort_2021;
 
 import java.util.ArrayList;
 import java.util.List;

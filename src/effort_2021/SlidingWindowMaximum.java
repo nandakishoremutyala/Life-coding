@@ -1,10 +1,9 @@
-package prep_2021.all_googles;
+package effort_2021;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
-import java.util.PriorityQueue;
 import java.util.TreeMap;
 
 public class SlidingWindowMaximum {
