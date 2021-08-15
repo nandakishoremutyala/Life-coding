@@ -3,7 +3,10 @@ package effort_2021;
 import java.util.*;
 
 public class ValidCharacterDFA {
-    private static final List<Map<String, Integer>> dfa = List.of(
+    public static void main(String[] args) {
+
+    }
+    /*private static final List<Map<String, Integer>> dfa = List.of(
             Map.of("digit", 1, "sign", 2, "dot", 3),
             Map.of("digit", 1, "dot", 4, "exponent", 5),
             Map.of("digit", 1, "dot", 3),
@@ -38,5 +41,5 @@ public class ValidCharacterDFA {
             currentState=dfa.get(currentState).get(group);
         }
         return validFinalStates.contains(currentState);
-    }
+    }*/
 }
