@@ -7,6 +7,10 @@ attempt is also here. If you follow this repo, make sure you run the code and tr
 with test cases. 
 # Amazon Leadership interview details
 * https://interviewgenie.com/blog-1/category/Amazon+interviews
+
+## Goldmine
+1. https://www.geeksforgeeks.org/fundamentals-of-algorithms/?ref=shm
+
 ## Resources
 * Cracking the coding interview book
 * https://www.geeksforgeeks.org/
