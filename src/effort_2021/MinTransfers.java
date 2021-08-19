@@ -6,6 +6,10 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class MinTransfers {
+    public static void main(String[] args) {
+        MinTransfers minTransfers=new MinTransfers();
+        minTransfers.minTransfers(null);
+    }
     public int minTransfers(int[][] transactions) {
         Map<Integer, Integer> personToDebt = new HashMap<>();
         for (int[] transaction : transactions) {
