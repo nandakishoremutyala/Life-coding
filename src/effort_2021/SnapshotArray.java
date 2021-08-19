@@ -31,7 +31,6 @@ public class SnapshotArray {
         TreeMap<Integer, Integer> map = list.get(index);
         map.put(snapId, val);
         list.set(index, map);
-
     }
 
     public int snap() {
