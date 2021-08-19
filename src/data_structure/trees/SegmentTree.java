@@ -19,6 +19,7 @@ public class SegmentTree {
         int[] data = new int[2 * n];
         for (int j = 0; j < n; j++)
             data[n + j] = arr[j];
+        // build from the left side/ not right side
         for (int i = n - 1; i >= 1; i--) {
             data[i] = Math.min(data[2 * i], data[(2 * i) + 1]);
         }
