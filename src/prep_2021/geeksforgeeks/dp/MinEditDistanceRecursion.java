@@ -29,5 +29,7 @@ public class MinEditDistanceRecursion {
     public static void main(String[] args) {
         int res = editDist("cat", "cut", 2, 2);
         System.out.println(res);
+        int res1 = editDist("sunday", "saturday", 5, 7);
+        System.out.println(res1);
     }
 }
