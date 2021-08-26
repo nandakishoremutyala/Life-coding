@@ -10,6 +10,7 @@ with test cases.
 
 ## Goldmine
 1. https://www.geeksforgeeks.org/fundamentals-of-algorithms/?ref=shm
+2. 
 
 ## Resources
 * Cracking the coding interview book
@@ -27,6 +28,8 @@ with test cases.
 * https://www.interviewcake.com
 * https://www.geeksforgeeks.org/must-do-coding-questions-for-companies-like-amazon-microsoft-adobe/
 * https://www.programcreek.com/2012/11/top-10-algorithms-for-coding-interview/
+* Online class: 
+    1. https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-006-introduction-to-algorithms-fall-2011/
 ## Helper materials: 
 
 Tree:
