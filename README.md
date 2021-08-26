@@ -30,6 +30,7 @@ with test cases.
 * https://www.programcreek.com/2012/11/top-10-algorithms-for-coding-interview/
 * Online class: 
     1. https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-006-introduction-to-algorithms-fall-2011/
+    2. https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-046j-design-and-analysis-of-algorithms-spring-2015/lecture-videos/
 ## Helper materials: 
 
 Tree:
