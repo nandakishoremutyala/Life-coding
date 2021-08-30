@@ -73,8 +73,6 @@ public class BellmonFord {
         graph.edges[7].weight = -3;
         int[] result= graph.bellmonFord(graph,0);
         MasterPrinter.printArray(result);
-
-
     }
 
     private int[] bellmonFord(BellmonFord graph, int src) {
