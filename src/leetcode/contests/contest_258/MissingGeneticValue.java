@@ -7,7 +7,8 @@ public class MissingGeneticValue {
     public static void main(String[] args) {
 
     }
-    class GNode{
+
+    class GNode {
         int val;
         int root;
         List<GNode> childs;
@@ -15,13 +16,12 @@ public class MissingGeneticValue {
         public GNode(int val, int root) {
             this.val = val;
             this.root = root;
-            this.childs=new ArrayList<>();
+            this.childs = new ArrayList<>();
         }
     }
+
     public int[] smallestMissingValueSubtree(int[] parents, int[] nums) {
-        ArrayList<Integer>[] gTree=new ArrayList[5];
-
-        for()
-
+        ArrayList<Integer>[] gTree = new ArrayList[5];
+        return null;
     }
 }
