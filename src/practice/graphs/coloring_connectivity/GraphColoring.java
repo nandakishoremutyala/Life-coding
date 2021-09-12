@@ -27,24 +27,24 @@ public class GraphColoring {
 
         boolean[] available = new boolean[V];
 
-        Arrays.fill(available,true);
+        Arrays.fill(available, true);
         result[0] = 0;
 
         for (int i = 1; i < V; i++) {
             Iterator<Integer> itr = adj[i].iterator();
             while (itr.hasNext()) {
                 int item = itr.next();
-                if(result[item]!=-1){ // If adjacent has been taken care, mark it not to color
-                    available[result[item]]=false;
+                if (result[item] != -1) { // If adjacent has been taken care, mark it not to color
+                    available[result[item]] = false;
                 }
             }
 
             // find first available color to color the current vertex
             int cr;
             for (cr = 0; cr < V; cr++) {
-                if(available[cr]) break;
+                if (available[cr]) break;
             }
-            result[i]=cr;
+            result[i] = cr;
             Arrays.fill(available, true);
         }
         for (int u = 0; u < V; u++)
