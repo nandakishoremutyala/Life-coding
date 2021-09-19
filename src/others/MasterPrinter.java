@@ -41,4 +41,16 @@ public class MasterPrinter {
             System.out.println("key: "+e.getKey()+" "+"value: "+e.getValue());
         }
     }
+
+    public static void printAdjacencyListGraph(List<Integer>[] graph) {
+        int i=0;
+        for(List<Integer> l:graph){
+            System.out.print(i +"->");
+            for(int j:l){
+                System.out.print(j+" ");
+            }
+            System.out.println();
+            i++;
+        }
+    }
 }
