@@ -61,5 +61,6 @@ public class MasterPrinter {
             }
             System.out.println("");
         }
+        System.out.println("-----------------");
     }
 }
