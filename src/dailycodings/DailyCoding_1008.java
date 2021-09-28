@@ -35,10 +35,9 @@ public class DailyCoding_1008 {
     }
 
     private int maxXorOptimal(int[] nums) {
-        Arrays.sort(nums);
+        int maxNumber= Arrays.stream(nums).max().getAsInt();
         int max = Integer.MIN_VALUE;
-        int maxNumer = nums[nums.length - 1];
-        int L = (Integer.toBinaryString(maxNumer)).length();
+        int L = (Integer.toBinaryString(maxNumber)).length();
         TrieNode root = new TrieNode('*');
         // zero left-padding to ensure L bits for each number
         int n = nums.length, bitmask = 1 << L;
