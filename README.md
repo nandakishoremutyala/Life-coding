@@ -11,7 +11,9 @@ with test cases.
 ## Goldmine
 1. https://www.geeksforgeeks.org/fundamentals-of-algorithms/?ref=shm
 2. 
-
+## GeeksForGeeks for google questions
+* https://practice.geeksforgeeks.org/problems/construct-list-using-given-q-xor-queries/0/?company%5B%5D=Google#
+* 
 ## Resources
 * Cracking the coding interview book
 * https://www.geeksforgeeks.org/
