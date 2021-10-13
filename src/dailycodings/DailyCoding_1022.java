@@ -16,16 +16,24 @@ public class DailyCoding_1022 {
     }
 
     private static int findMissingNumber(int[] arr) {
-        Arrays.sort(arr);
-        int len = arr.length;
-        int i = 0;
-        while (i + 2 < len) {
-            int begin = arr[i];
-            int last = arr[i + 2];
-            int result = arr[i] ^ arr[i + 1] ^ arr[i + 2];
-            if (result != last) return begin;
-            i += 3;
+        int[] bitCount=new int[31];
+        for(int  num:arr){
+            int placeHolder=1<< 31;
+            int n= num | placeHolder;
+            String binaryString = Integer.toBinaryString(n).substring(1);
+            int msb=0;
+            for(char c:binaryString.toCharArray()){
+                if(c=='1')
+                    bitCount[msb++]+=1;
+                else
+                    bitCount[msb++]+=0;
+            }
+            System.out.println(binaryString);
         }
-        return arr[i];
+        StringBuilder sb=new StringBuilder();
+        for(int i=0;i<31;i++){
+            sb.append(bitCount[i]%3);
+        }
+        return Integer.parseInt(sb.toString(),2);
     }
 }
