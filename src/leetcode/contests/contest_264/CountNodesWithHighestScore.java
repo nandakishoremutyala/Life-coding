@@ -20,16 +20,16 @@ public class CountNodesWithHighestScore {
         System.out.println(nodeCount);
 
         int max = 0;
-        TreeMap<Integer, Integer> pq = new TreeMap<>();
+        TreeMap<Long, Integer> pq = new TreeMap<>();
         for (int i = 0; i < parents.length; i++) {
             if (i == 0) {
                 if (graph[i].size() == 1) {
-                    int count = nodeCount.get(graph[i].get(0));
+                    long count = nodeCount.get(graph[i].get(0));
                     pq.compute(count, (k, v) -> v == null ? 1 : v + 1);
                 }else if(graph[i].size()==2){
                     int leftCount = nodeCount.get(graph[i].get(0));
                     int rightCount = nodeCount.get(graph[i].get(1));
-                    int count=leftCount*rightCount;
+                    long count= (long) leftCount *rightCount;
                     pq.compute(count, (k, v) -> v == null ? 1 : v + 1);
                 }else{
                     return 0;
@@ -37,18 +37,18 @@ public class CountNodesWithHighestScore {
             } else {
                 int c = graph[i].size();
                 if (c == 0) {
-                    int count = nodeCount.get(0) - 1;
+                    long count = nodeCount.get(0) - 1;
                     pq.compute(count, (k, v) -> v == null ? 1 : v + 1);
                 } else if (c == 1) {
                     int bottomCount = nodeCount.get(graph[i].get(0));
                     int topCount = nodeCount.get(0) - 1 - bottomCount;
-                    int count = bottomCount * topCount;
+                    long count = (long) bottomCount * topCount;
                     pq.compute(count, (k, v) -> v == null ? 1 : v + 1);
                 } else {
                     int leftCount = nodeCount.get(graph[i].get(0));
                     int rightCount = nodeCount.get(graph[i].get(1));
                     int rest = nodeCount.get(0) - nodeCount.get(i);
-                    int count = leftCount * rest * rightCount;
+                    long count = (long) leftCount * rest * rightCount;
                     pq.compute(count, (k, v) -> v == null ? 1 : v + 1);
                 }
             }
