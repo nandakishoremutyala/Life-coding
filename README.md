@@ -142,6 +142,26 @@ HashMap<String,Long> map= (HashMap<String, Long>) Arrays.stream(arr).collect(Col
  PriorityQueue<ListNode> pq = new PriorityQueue<>(Comparator.comparing(node -> node.val));
 ```           
 
+#### Custom comparator for nested scenario
+```
+class Pair implements Comparable<Pair> {
+    int score;
+    String name;
+
+    Pair(int score, String name) {
+        this.score = score;
+        this.name = name;
+    }
+
+    @Override
+    public int compareTo(Pair o) {
+        if (this.score == o.score)
+            return o.name.compareTo(this.name);
+        return this.score - o.score;
+    }
+```
+It will sort based on score but if the scores are level, it will use name based sorting. 
+
 #### Best Way to understand backtracking
 * https://www.bilibili.com/video/av36351060?p=1
 
