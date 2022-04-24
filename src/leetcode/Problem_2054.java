@@ -1,3 +1,8 @@
+package leetcode;
+
+import java.util.Arrays;
+import java.util.PriorityQueue;
+
 /**
 You are given a 0-indexed 2D integer array of events where events[i] = [startTimei, endTimei, valuei]. The ith event starts at startTimei and ends at endTimei, and if you attend this event, you will receive a value of valuei. You can choose at most two non-overlapping events to attend such that the sum of their values is maximized.
 
@@ -37,14 +42,14 @@ events[i].length == 3
 
 
 
-class Solution {
+class Problem_2054 {
     public int maxTwoEvents(int[][] events) {
-     Arrays.sort(events,(a,b)->a[0]-b[0]);
+     Arrays.sort(events,(a, b)->a[0]-b[0]);
         int n=events.length;
 
         int globalMax=0;
         int prevMax=0;
-        PriorityQueue<int[]> pq=new PriorityQueue<>(n,(a,b)->a[1]-b[1]);
+        PriorityQueue<int[]> pq=new PriorityQueue<>(n,(a, b)->a[1]-b[1]);
 
         for(int[] curr:events){
             int currProfit=curr[2];

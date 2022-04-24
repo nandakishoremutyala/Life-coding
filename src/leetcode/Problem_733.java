@@ -1,4 +1,6 @@
-class Solution {
+package leetcode;
+
+class Problem_733 {
     int[][] dirs=new int[][]{
             {0,-1},{0,1},{-1,0},{1,0}
     };

@@ -1,3 +1,8 @@
+package leetcode;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
 Given a directed acyclic graph (DAG) of n nodes labeled from 0 to n - 1, find all possible paths from node 0 to node n - 1 and return them in any order.
 
@@ -28,7 +33,7 @@ All the elements of graph[i] are unique.
 The input graph is guaranteed to be a DAG.
 */
 
-class Solution {
+class Problem_797 {
     public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
         List<List<Integer>> result=new ArrayList<>();
         

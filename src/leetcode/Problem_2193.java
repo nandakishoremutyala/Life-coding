@@ -1,4 +1,6 @@
-class Solution {
+package leetcode;
+
+class Problem_2193 {
     public int minMovesToMakePalindrome(String s) {
         
         int res=0;

@@ -1,3 +1,10 @@
+package leetcode;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 /**
 We have n jobs, where every job is scheduled to be done from startTime[i] to endTime[i], obtaining a profit of profit[i].
 
@@ -37,7 +44,7 @@ Constraints:
 1 <= startTime[i] < endTime[i] <= 109
 1 <= profit[i] <= 104
 */
-class Solution {
+class Problem_1235 {
         public int jobScheduling(int[] startTime, int[] endTime, int[] profit) {
         int n = startTime.length;
         List<Task> list = new ArrayList<>();

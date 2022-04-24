@@ -1,3 +1,7 @@
+package practice;
+
+import java.util.HashMap;
+
 public class GoogleProblem2 {
     public static void main(String[] args) {
         String input="omar/$hello$/bingo";
