@@ -38,7 +38,6 @@ public class CountLatticePoints {
         int xCenter = circle[0];
         int yCenter = circle[1];
         int r = circle[2];
-
         return dist((double) x, (double) y, (double) xCenter, (double) yCenter) <= r * r;
     }
 
