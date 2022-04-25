@@ -33,7 +33,7 @@ with test cases.
 * Online class: 
     1. https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-006-introduction-to-algorithms-fall-2011/
     2. https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-046j-design-and-analysis-of-algorithms-spring-2015/lecture-videos/
-* Very fascination problem sets: https://cses.fi/problemset/list **
+* Very fascinating problem sets: https://cses.fi/problemset/list **
 ## Helper materials: 
 
 Tree:
