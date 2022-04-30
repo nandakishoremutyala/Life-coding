@@ -1,8 +1,8 @@
 package leetcode.contests.contest_290;
 
-public class NumberOfFlowersFullBlown {
+class NumberOfFlowersFullBlown {
 
-public int[] fullBloomFlowers(int[][] flowers, int[] persons) {
+    public int[] fullBloomFlowers(int[][] flowers, int[] persons) {
         int max = 0;
 
         for (int[] flower : flowers) {
