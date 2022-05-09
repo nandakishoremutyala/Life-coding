@@ -5,11 +5,8 @@ import java.util.LinkedList;
 import java.util.Stack;
 
 public class Problem_2267 {
-     int R;
-     int C;
-    int[][] dirs = new int[][]{{1, 0}, {0, 1}};
-    boolean found = false;
-
+    int R;
+    int C;
     public static void main(String[] args) {
         char[][] grid = new char[][]{
                 {'(', '(', '('},
@@ -23,54 +20,29 @@ public class Problem_2267 {
         System.out.println(result);
     }
 
+    boolean[][][] visited = new boolean[100][100][101];
+
     public boolean hasValidPath(char[][] grid) {
         R = grid.length;
         C = grid[0].length;
-        StringBuilder sb = new StringBuilder();
-        dfs(grid, sb, 0, 0);
-        return found;
+        return dfs(grid, 0, 0, 0);
     }
 
-    private void dfs(char[][] grid, StringBuilder sb, int r, int c) {
-        if (found) return;
-        if (r == R - 1 && c == C - 1) {
-            sb.append(grid[r][c]);
-            if (isItValid(sb)) {
-                found = true;
-                System.out.println("valid: " + sb.toString());
-            }
-            return;
-        }
-        sb.append(grid[r][c]);
-        for (int[] dir : dirs) {
-            int nr = r + dir[0];
-            int nc = c + dir[1];
-            if (isInBoundary(nr, nc)) {
-                dfs(grid, sb, nr, nc);
-                if (sb.length() >= 1)
-                    sb.deleteCharAt(sb.length() - 1);
-            }
-        }
+    private boolean dfs(char[][] grid, int r, int c, int bal) {
+        bal += grid[r][c] == '(' ? 1 : -1;
+        if (bal < 0 || bal > ((R + C) / 2) || visited[r][c][bal])
+            return false;
+
+        visited[r][c][bal] = true;
+        if (r == R - 1 && c == C - 1 && bal == 0)
+            return true;
+        if (r < R - 1 && dfs(grid, r + 1, c, bal))
+            return true;
+        if (c < C - 1 && dfs(grid, r, c + 1, bal))
+            return true;
+
+        return false;
+
     }
 
-    private boolean isItValid(StringBuilder sb) {
-        ArrayDeque<Character> stack = new ArrayDeque<Character>();
-
-        for (char c : sb.toString().toCharArray()) {
-            if (c == '(') {
-                stack.push(c);
-            } else {
-                if (!stack.isEmpty() && stack.peek() == '(') {
-                    stack.poll();
-                } else {
-                    stack.push(c);
-                }
-            }
-        }
-        return stack.isEmpty();
-    }
-
-    private boolean isInBoundary(int r, int c) {
-        return (r >= 0 && r < R && c >= 0 && c < C);
-    }
 }
